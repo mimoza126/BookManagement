@@ -16,7 +16,7 @@ import dto.BookDTO;
 /**
  * Servlet implementation class BookExcuteSevlet
  */
-@WebServlet("/BookExcuteSevlet")
+@WebServlet("/BookExcuteServlet")
 public class BookExcuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,8 +33,8 @@ public class BookExcuteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		BookDTO book = (BookDTO)session.getAttribute("input_data");
-		int result = BookDAO.RegisterBook(book);
+		BookDTO bo = (BookDTO)session.getAttribute("input_data");
+		int result = BookDAO.RegisterBook(bo);
 		
 		String path = "";
 		if(result == 1) {
@@ -48,6 +48,7 @@ public class BookExcuteServlet extends HttpServlet {
 			path = "WEB-INF/view/book_regester.jsp";
 			
 		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
 
