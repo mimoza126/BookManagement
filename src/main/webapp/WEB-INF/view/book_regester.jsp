@@ -8,22 +8,22 @@
 </head>
 <body>
 <div>図書登録</div>
-<form action="BookConfirmRegester"enctype="multipart/form-data"method="POST">
+<form action="BookConfirmRegester"method="POST">
 <table>
     <tr>
-		<th>図書名<span>必須</span></th>
+		<th>図書名</th>
 		<td><input size="20"type = "text" name = "title" placeholder = "図書名"class="wide"></td>
 	</tr>
 	<tr>
-		<th>著者<span>必須</span></th>
+		<th>著者</th>
 		<td><input size="10"type = "text" name = "author" placeholder = "著者"class="wide"></td>
 	</tr>	 
 	<tr>
-		<th>出版社<span>必須</span></th>
+		<th>出版社</th>
 		<td><input size="10"type = "text" name = "publisher" placeholder = "出版社"class="wide"></td>
 	</tr>	
 	<tr>
-		<th>ISBN<span>必須</span></th>
+		<th>ISBN</th>
 		<td><input size="10"type = "text" name = "isbn" placeholder = "ISBN"class="wide"></td>
 	</tr>	 
 </table>
