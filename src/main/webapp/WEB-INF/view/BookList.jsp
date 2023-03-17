@@ -38,7 +38,7 @@
 	for(BookDTO s : list) {
 	%>
 	<tr>
-		<td><%=s.getTitle()%></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
+		<td><a href="BookDetailServlet?title=<%=s.getTitle()%>"></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
 	</table>
 	<%} %>
