@@ -34,24 +34,34 @@ public class BookExcuteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		BookDTO bo = (BookDTO)session.getAttribute("input_data");
-		int result = BookDAO.RegisterBook(bo);
+		int stock = (int)session.getAttribute("stock_data");
 		
-		String path = "";
-		if(result == 1) {
-			// 登録に成功したので、sessionのデータを削除
-			//session.removeAttribute("input_data");
+		for(int i = 0 ; i < stock ; i++) {
 			
-			path = "WEB-INF/view/book_success.jsp";
+			int result = BookDAO.RegisterBook(bo);
 			
-		} else {
-			// 失敗した場合はパラメータ付きで登録画面に戻す
-			path = "WEB-INF/view/book_regester.jsp";
+			String path = "";
+			if(result == stock) {
+				// 登録に成功したので、sessionのデータを削除
+				session.removeAttribute("input_data");
+				session.removeAttribute("stock_data");
+				
+				path = "WEB-INF/view/book_success.jsp";
+				
+			} else {
+				// 失敗した場合はパラメータ付きで登録画面に戻す
+				path = "WEB-INF/view/book_regester.jsp";
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+				dispatcher.forward(request, response);
+			}
 			
-		}
+			}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
-
+		
+		
+		
+		
 	}
 
 	/**
