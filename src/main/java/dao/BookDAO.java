@@ -5,7 +5,10 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.BookDTO;
 
@@ -49,4 +52,48 @@ public class BookDAO {
 		return result;
 	}
 	
+	public static List<BookDTO> SelectAllBook(){
+		
+		// 実行するSQL
+		String sql = "SELECT DISTINCT title FROM book";
+		
+		// 返却用のListインスタンス
+		List<BookDTO> result = new ArrayList<>();
+				
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				while(rs.next()) {
+
+					// n行目のデータを取得
+					int id = rs.getInt("id");
+					String title = rs.getString("title");
+					String author = rs.getString("author");
+					String publisher = rs.getString("publisher");
+					String isbn = rs.getString("isbn");
+					String category = rs.getString("category");
+					String type = rs.getString("type");
+
+					
+					// n件目のインスタンスを作成
+					BookDTO book = new BookDTO(id, title, author, publisher, isbn, category, type);
+					
+					// インスタンスをListに追加
+					result.add(book);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		// Listを返却する。0件の場合は空のListが返却される。
+		return result;
+	}
 }
