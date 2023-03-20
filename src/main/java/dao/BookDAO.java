@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.BookDTO;
+import dto.BooklistDTO;
 
 public class BookDAO {
 	private static Connection getConnection()throws URISyntaxException, SQLException {
@@ -52,13 +53,13 @@ public class BookDAO {
 		return result;
 	}
 	
-	public static List<BookDTO> SelectAllBook(){
+	public static List<BooklistDTO> SelectAllBook(){
 		
 		// 実行するSQL
-		String sql = "SELECT DISTINCT title FROM book";
+		String sql = "SELECT DISTINCT title,author,publisher FROM book";
 		
 		// 返却用のListインスタンス
-		List<BookDTO> result = new ArrayList<>();
+		List<BooklistDTO> result = new ArrayList<>();
 				
 		try (
 				Connection con = getConnection();
@@ -70,17 +71,13 @@ public class BookDAO {
 				while(rs.next()) {
 
 					// n行目のデータを取得
-					int id = rs.getInt("id");
 					String title = rs.getString("title");
 					String author = rs.getString("author");
 					String publisher = rs.getString("publisher");
-					String isbn = rs.getString("isbn");
-					String category = rs.getString("category");
-					String type = rs.getString("type");
 
 					
 					// n件目のインスタンスを作成
-					BookDTO book = new BookDTO(id, title, author, publisher, isbn, category, type);
+					BooklistDTO book = new BooklistDTO(title, author, publisher);
 					
 					// インスタンスをListに追加
 					result.add(book);
@@ -96,4 +93,88 @@ public class BookDAO {
 		// Listを返却する。0件の場合は空のListが返却される。
 		return result;
 	}
+	
+public static List<BooklistDTO> SelectSearchBook(String cate){
+		
+		// 実行するSQL
+		String sql = "SELECT DISTINCT title,author,publisher FROM book WHERE category = ?";
+		
+		// 返却用のListインスタンス
+		List<BooklistDTO> result = new ArrayList<>();
+				
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			
+			pstmt.setString(1, cate);
+			
+			try (ResultSet rs = pstmt.executeQuery()){
+				
+				while(rs.next()) {
+
+					// n行目のデータを取得
+					String title = rs.getString("title");
+					String author = rs.getString("author");
+					String publisher = rs.getString("publisher");
+					
+					// n件目のインスタンスを作成
+					BooklistDTO book = new BooklistDTO(title, author, publisher);
+					
+					// インスタンスをListに追加
+					result.add(book);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+
+		// Listを返却する。0件の場合は空のListが返却される。
+		return result;
+	}
+public static List<BooklistDTO> SelectBookDetail(String cate){
+	
+	// 実行するSQL
+	String sql = "SELECT DISTINCT title,author,publisher FROM book WHERE title = ?";
+	
+	// 返却用のListインスタンス
+	List<BooklistDTO> result = new ArrayList<>();
+			
+	try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			){
+		
+		pstmt.setString(1, cate);
+		
+		try (ResultSet rs = pstmt.executeQuery()){
+			
+			while(rs.next()) {
+
+				// n行目のデータを取得
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				String publisher = rs.getString("publisher");
+
+				
+				// n件目のインスタンスを作成
+				BooklistDTO book = new BooklistDTO(title, author, publisher);
+				
+				// インスタンスをListに追加
+				result.add(book);
+			}
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}catch (URISyntaxException e) {
+		e.printStackTrace();
+	}
+
+	// Listを返却する。0件の場合は空のListが返却される。
+	return result;
+}
 }
