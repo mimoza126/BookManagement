@@ -34,7 +34,11 @@ public class BookListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
 
+
 		List<BooklistDTO> List = BookDAO.SelectAllBook();
+
+		
+
 
 		request.setAttribute("list", List);
 		
