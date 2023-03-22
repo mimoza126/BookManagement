@@ -41,7 +41,7 @@ public class BookExcuteServlet extends HttpServlet {
 			int result = BookDAO.RegisterBook(bo);
 			
 			String path = "";
-			if(result == stock) {
+			if(result == 1) {
 				// 登録に成功したので、sessionのデータを削除
 				session.removeAttribute("input_data");
 				session.removeAttribute("stock_data");
