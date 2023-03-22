@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,15 +21,15 @@
 	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
 	</form>
 	
-	<ul style="display: flex;">
-	  <li><a href="BookListServlet">すべて</a> </li>
-	  <li><a href="BookSearchlist?category=文芸">文芸</a></li>
-	  <li><a href="BookSearchlist?category=実用書">実用書</a></li>
-	  <li><a href="BookSearchlist?category=ビジネス書・経済・経営">ビジネス書・経済・経営</a></li>
-	  <li><a href="BookSearchlist?category=絵本・児童書">絵本・児童書</a></li>
-	  <li><a href="BookSearchlist?category=学習参考書">学習参考書</a></li>
-	  <li><a href="BookSearchlist?category=専門書">専門書</a></li>
-	  <li><a href="BookSearchlist?category=コミック・雑誌">コミック・雑誌</a></li>
+	<ul class="category-list">
+	  <li class="category-item"><a href="BookListServlet">すべて</a> </li>
+	  <li class="category-item"><a href="BookSearchlist?category=文芸">文芸</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=実用書">実用書</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=ビジネス書・経済・経営">ビジネス書・経済・経営</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=絵本・児童書">絵本・児童書</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=学習参考書">学習参考書</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=専門書">専門書</a></li>
+	  <li class="category-item"><a href="BookSearchlist?category=コミック・雑誌">コミック・雑誌</a></li>
 	</ul>
 	<table>
 	<tr>
