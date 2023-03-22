@@ -30,7 +30,7 @@ public class AccountDAO {
 	}
 	
 	public static int registerAccount(Account account) {
-		String sql = "INSERT INTO account2 VALUES(default, ?, ?, ?, ?, ?, ?, ?, current_timestamp)";
+		String sql = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?)";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -47,10 +47,10 @@ public class AccountDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setString(1, account.getName());
-			pstmt.setString(4, account.getMail());
-			pstmt.setString(5, account.getPhone_number());
-			pstmt.setString(6, salt);
-			pstmt.setString(7, hashedPw);
+			pstmt.setString(2, account.getMail());
+			pstmt.setString(3, hashedPw);
+			pstmt.setString(4, salt);
+			pstmt.setString(5, account.getTell());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class AccountDAO {
 	
 	// メールアドレスを元にソルトを取得
 	public static String getSalt(String mail) {
-		String sql = "SELECT salt FROM account WHERE mail = ?";
+		String sql = "SELECT salt FROM users WHERE mail = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -88,7 +88,7 @@ public class AccountDAO {
 		return null;
 	}
 	public static Account login(String mail, String hashedPw) {
-		String sql = "SELECT * FROM account2 WHERE mail = ? AND password = ?";
+		String sql = "SELECT * FROM users WHERE mail = ? AND password = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -102,11 +102,11 @@ public class AccountDAO {
 				if(rs.next()) {
 					
 					String name = rs.getString("name");
-					String phone_number = rs.getString("phone_number");
+					String tell = rs.getString("tell");
 					String salt = rs.getString("salt");
 					String createdAt = rs.getString("created_at");
 					
-					return new Account( name, mail, phone_number, salt, null, null);
+					return new Account( 0,name, mail, tell, salt, null, null);
 				}
 			}
 		} catch (SQLException e) {

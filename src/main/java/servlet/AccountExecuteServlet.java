@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AccountDAO;
 import dto.Account;
 
 /**
- * Servlet implementation class KadaiConfirmServlet
+ * Servlet implementation class KadaiExecuteServlet
  */
-@WebServlet("/tosyoConfirmServlet")
-public class tosyoConfirmServlet extends HttpServlet {
+@WebServlet("/AccountExecuteServlet")
+public class AccountExecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public tosyoConfirmServlet() {
+    public AccountExecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +33,26 @@ public class tosyoConfirmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String name = request.getParameter("name");
-		String mail = request.getParameter("mail");
-		String phone_number = request.getParameter("phone_number");
-		String pw = request.getParameter("pw");
-		
-		
-		Account account = new Account( name, mail, phone_number, null, pw, null);
-		
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("input_data", account);
-		
-		String view = "WEB-INF/view/tosyoconfirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);	
+				HttpSession session = request.getSession();
+
+				
+				Account account = (Account)session.getAttribute("input_data");
+				
+				
+				int result = AccountDAO.registerAccount(account);
+				
+				String path = "";
+				if(result == 1) {
+					
+					//session.removeAttribute("input_data");
+					
+					path = "WEB-INF/view/Account_success.jsp";
+				} else {
+					
+					path = "WEB-INF/view/Account_form.jsp?error=1";
+				}
+				RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+				dispatcher.forward(request, response);
 	}
 
 	/**

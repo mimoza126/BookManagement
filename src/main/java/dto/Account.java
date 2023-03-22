@@ -1,24 +1,33 @@
 package dto;
 
 public class Account {
+	private int id;
 	private String name;
 	private String mail;
-	private String phone_number;
+	private String tell;
 	private String salt;
 	private String password;
 	private String hashedPassword;
+	public int getId() {
+		return id;
+	}
 	
-	public Account(String name, String mail, String phone_number, String salt,
-			String password, String hashedPassword) {
+	
+	public Account(int id, String name, String mail, String tell, String salt, String password, String hashedPassword) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.mail = mail;
-		this.phone_number = phone_number;
+		this.tell = tell;
 		this.salt = salt;
 		this.password = password;
 		this.hashedPassword = hashedPassword;
 	}
-	
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -31,11 +40,11 @@ public class Account {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getPhone_number() {
-		return phone_number;
+	public String getTell() {
+		return tell;
 	}
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setTell(String tell) {
+		this.tell = tell;
 	}
 	public String getSalt() {
 		return salt;
@@ -55,6 +64,5 @@ public class Account {
 	public void setHashedPassword(String hashedPassword) {
 		this.hashedPassword = hashedPassword;
 	}
-	
 	
 }
