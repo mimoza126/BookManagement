@@ -34,9 +34,9 @@ public class BookExcuteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		BookDTO bo = (BookDTO)session.getAttribute("input_data");
-		int stock = (int)session.getAttribute("stock_data");
+		//int stock = (int)session.getAttribute("stock_data");
 		
-		for(int i = 0 ; i < stock ; i++) {
+	
 			
 			int result = BookDAO.RegisterBook(bo);
 			
@@ -62,7 +62,7 @@ public class BookExcuteServlet extends HttpServlet {
 		
 		
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,3 +1,4 @@
+
 package servlet;
 
 import java.io.IOException;
@@ -10,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.Account;
+import dao.BookDAO;
 import dto.ReviewDTO;
 
 /**
- * Servlet implementation class ReviewConfirm
+ * Servlet implementation class ReviewExcuteServlet
  */
-@WebServlet("/ReviewConfirm")
-public class ReviewConfirm extends HttpServlet {
+@WebServlet("/ReviewExcuteServlet")
+public class ReviewExcuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewConfirm() {
+    public ReviewExcuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,32 +34,28 @@ public class ReviewConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Account user_id = (Account)session.getAttribute("user");
-		if(user_id == null){
-			//セッションの中身がnullであれば不正アクセスと判断し
-			//ログイン画面へ戻る
-			String view = "./";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
-			return;
-		}
-		int book_id = (int)Integer.parseInt(request.getParameter("id"));
+		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+		//int stock = (int)session.getAttribute("stock_data");
 		
-		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title");
-		String comment = request.getParameter("comment");
-		
-		
-		
-		
-		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
-		session.setAttribute("book_data" , book_id);
-		session.setAttribute("input_data", re);
-		
-		
-		String view = "WEB-INF/view/reivew_confirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
-		dispatcher.forward(request, response);	
+	
+			
+			int result = BookDAO.RegisterReview(re);
+			
+			String path = "";
+			if(result == 1) {
+				// 登録に成功したので、sessionのデータを削除
+				session.removeAttribute("input_data");
+			//session.removeAttribute("stock_data");
+				
+				path = "WEB-INF/view/review_success.jsp";
+				
+			} else {
+				// 失敗した場合はパラメータ付きで登録画面に戻す
+				path = "WEB-INF/view/review_write.jsp";
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+				dispatcher.forward(request, response);
+			}
 	}
 
 	/**
