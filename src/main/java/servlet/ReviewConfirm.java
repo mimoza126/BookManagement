@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +31,22 @@ public class ReviewConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+
+		
+		int book_id = (String)session.getAttribute("isbn");
+		
 		request.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		String comment = request.getParameter("comment");
-		HttpSession session = request.getSession();
-		ReviewDTO re = new ReviewDTO( 0 ,book_id,user_id, title ,comment);
+		
+		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
+		session.setAttribute("input_data", re);
+		
+		String view = "WEB-INF/view/review_confirm.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
+		dispatcher.forward(request, response);	
 	}
 
 	/**
