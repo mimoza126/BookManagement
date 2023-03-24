@@ -17,6 +17,8 @@
 	<h2><%=s.getTitle() %></h2>
 	<p>(著)  <%=s.getAuthor() %></p><p>出版社  <%=s.getPublisher() %></p>
 	
+	
+	<a href="BookReviewServlet?isbn=<%=s.getIsbn()%>">口コミを書く</a>
 	<%} %>
 </body>
 </html>

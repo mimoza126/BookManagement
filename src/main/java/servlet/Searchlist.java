@@ -14,16 +14,16 @@ import dao.BookDAO;
 import dto.BooklistDTO;
 
 /**
- * Servlet implementation class BookSearchlist
+ * Servlet implementation class Searchlist
  */
-@WebServlet("/BookSearchlist")
-public class BookSearchlist extends HttpServlet {
+@WebServlet("/Searchlist")
+public class Searchlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookSearchlist() {
+    public Searchlist() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +33,8 @@ public class BookSearchlist extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
-		String category = request.getParameter("category");
-		List<BooklistDTO> List = BookDAO.CategorySearchBook(category);
+		String title = request.getParameter("search");
+		List<BooklistDTO> List = BookDAO.SearchBook(title);
 
 		request.setAttribute("list", List);
 		
