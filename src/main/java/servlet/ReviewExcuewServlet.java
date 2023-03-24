@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BookDAO;
 import dto.ReviewDTO;
 
 /**
- * Servlet implementation class ReviewConfirm
+ * Servlet implementation class ReviewExcuewServlet
  */
-@WebServlet("/ReviewConfirm")
-public class ReviewConfirm extends HttpServlet {
+@WebServlet("/ReviewExcuewServlet")
+public class ReviewExcuewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewConfirm() {
+    public ReviewExcuewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +33,25 @@ public class ReviewConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+		int result = BookDAO.RegisterReview(re);
 		
-
-		int book_id = (int)Integer.parseInt(request.getParameter("id"));
+		String path = "";
+		if(result == 1) {
+			// 登録に成功したので、sessionのデータを削除
+			//session.removeAttribute("input_data");
+			
+			path = "WEB-INF/view/review_success.jsp";
+			
+		} else {
+			
+			// 失敗した場合はパラメータ付きで登録画面に戻す
+			path = "WEB-INF/view/reivew_write.jsp";
+			
+		}
 		
-		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title");
-		String comment = request.getParameter("comment");
-		
-		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
-		session.setAttribute("input_data", re);
-		
-		String view = "WEB-INF/view/review_confirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
-		dispatcher.forward(request, response);	
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+		dispatcher.forward(request, response);
 	}
 
 	/**

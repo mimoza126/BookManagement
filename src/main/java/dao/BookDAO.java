@@ -56,16 +56,15 @@ public class BookDAO {
 	
 	
 	public static int RegisterReview(ReviewDTO re) {
-		String sql = "INSERT INTO review VALUES(default,?,?,?,?)";
+		String sql = "INSERT INTO review VALUES(default,?,?,?)";
 		int result = 0;
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setInt(1, re.getBook_id());
-			pstmt.setInt(2, re.getUser_id());
-			pstmt.setString(3,re.getTitle());
-			pstmt.setString(4,re.getComment());
+			pstmt.setString(2,re.getTitle());
+			pstmt.setString(3,re.getComment());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
