@@ -12,6 +12,7 @@ import java.util.List;
 
 import dto.BookDTO;
 import dto.BooklistDTO;
+import dto.ReviewDTO;
 
 public class BookDAO {
 	private static Connection getConnection()throws URISyntaxException, SQLException {
@@ -41,6 +42,30 @@ public class BookDAO {
 			pstmt.setString(4,bo.getIsbn());
 			pstmt.setString(5, bo.getCategory());
 			pstmt.setString(6,bo.getType());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件更新しました。");
+
+		}
+		return result;
+	}
+	
+	
+	public static int RegisterReview(ReviewDTO re) {
+		String sql = "INSERT INTO review VALUES(default,?,?,?,?)";
+		int result = 0;
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setInt(1, re.getBook_id());
+			pstmt.setInt(2, re.getUser_id());
+			pstmt.setString(3,re.getTitle());
+			pstmt.setString(4,re.getComment());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
