@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,22 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
-import dto.BookDTO;
+import dto.BooklistDTO;
 
 /**
- * Servlet implementation class BookExcuteSevlet
+ * Servlet implementation class BookSearchlist
  */
-@WebServlet("/BookExcuteServlet")
-public class BookExcuteServlet extends HttpServlet {
+@WebServlet("/BookSearchlist")
+public class BookSearchlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookExcuteServlet() {
+    public BookSearchlist() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +32,15 @@ public class BookExcuteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		BookDTO bo = (BookDTO)session.getAttribute("input_data");
-		int result = BookDAO.RegisterBook(bo);
-		
-		String path = "";
-		if(result == 1) {
-			// 登録に成功したので、sessionのデータを削除
-			//session.removeAttribute("input_data");
-			
-			path = "WEB-INF/view/book_success.jsp";
-			
-		} else {
-			// 失敗した場合はパラメータ付きで登録画面に戻す
-			path = "WEB-INF/view/book_regester.jsp";
-			
-		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+		request.getParameter("UTF-8");
+		String category = request.getParameter("category");
+		List<BooklistDTO> List = BookDAO.CategorySearchBook(category);
 
+		request.setAttribute("list", List);
+		
+		String view = "WEB-INF/view/book_list.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);
 	}
 
 	/**
