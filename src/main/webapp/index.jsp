@@ -7,6 +7,7 @@
 <title>index</title>
 </head>
 <body>
-<a href = "BookRegester">図書登録</a>
+<a href = "BookRegester">図書登録</a><br>
+<a href = "manager_logServlet">ログ</a><br>
 </body>
 </html>
