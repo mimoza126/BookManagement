@@ -10,13 +10,13 @@
 <body>
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
-	BookDTO book = (BookDTO)session.getAttribute("input_data");
+	BookDTO bo = (BookDTO)session.getAttribute("input_data");
 	%>
-		図書名：<%=book.getTitle() %><br>
-		著者:<%=book.getAuthor() %><br>
-		出版社：<%=book.getPublisher() %><br>
-		ISBN:<%=book.getIsbn() %><br>
-		カテゴリ:<%=book.getCategory() %><br>
+		図書名：<%=bo.getTitle() %><br>
+		著者:<%=bo.getAuthor() %><br>
+		出版社：<%=bo.getPublisher() %><br>
+		ISBN:<%=bo.getIsbn() %><br>
+		カテゴリ:<%=bo.getCategory() %><br>
 		
 		
 		<a href="BookExcuteServlet">OK</a><br>	
