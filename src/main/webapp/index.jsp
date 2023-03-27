@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
 <%
 		request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("error") != null){	
@@ -34,6 +37,7 @@
 	<%
 		}
 	%>
+
 
 </body>
 </html>
