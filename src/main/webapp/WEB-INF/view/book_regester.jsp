@@ -10,6 +10,10 @@
 <div>図書登録</div>
 <form action="BookConfirmRegester"method="POST">
 <table>
+<tr>
+	<th>冊数</th>
+	<th><input size ="20" type = "number" name = "stock" placeholder = "冊数" class = "wide"></th>
+</tr>
     <tr>
 		<th>図書名</th>
 		<td><input size="20"type = "text" name = "title" placeholder = "図書名"class="wide"></td>
