@@ -1,17 +1,17 @@
 package dto;
 
 public class BooklistDTO {
+	private int book_id;
 	private String title;
 	private String author;
 	private String publisher;
-	private String isbn;
-	
-	public BooklistDTO(String title, String author, String publisher, String isbn) {
-		super();
-		this.title = title;
-		this.author = author;
-		this.publisher = publisher;
-		this.isbn = isbn;
+
+	public int getBook_id() {
+		return book_id;
+	}
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
+
 	}
 
 	public String getTitle() {
@@ -38,12 +38,15 @@ public class BooklistDTO {
 		this.publisher = publisher;
 	}
 
-	public String getIsbn() {
-		return isbn;
+	public BooklistDTO(int book_id, String title, String author, String publisher) {
+		super();
+		this.book_id = book_id;
+		this.title = title;
+		this.author = author;
+		this.publisher = publisher;
 	}
+	
+	
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
 	
 }

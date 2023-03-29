@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.BookDAO;
-import dto.BookDTO;
+
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class BookSearchlistlogin
+ * Servlet implementation class ReviewConfirm
  */
-@WebServlet("/BookSearchlistlogin")
-public class BookSearchlistlogin extends HttpServlet {
+@WebServlet("/ReviewConfirm")
+public class ReviewConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookSearchlistlogin() {
+    public ReviewConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +32,24 @@ public class BookSearchlistlogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String category = request.getParameter("category");
-		List<BookDTO> List = BookDAO.SelectSearchBookCategory(category);
 
-		request.setAttribute("list", List);
 		
-		String view = "WEB-INF/view/book_list_login.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+		//request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("id"));
+		int book_id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String comment = request.getParameter("comment");
+
+		
+		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
+		HttpSession session = request.getSession();
+		session.setAttribute("input_data", re);
+		
+		
+		String view = "WEB-INF/view/review_confirm.jsp";
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
+		dispatcher.forward(request, response);	
 	}
 
 	/**

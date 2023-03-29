@@ -45,7 +45,10 @@ public class BookConfirmRegester extends HttpServlet {
 		
 		BookDTO bo = new BookDTO( 0 , title , author , publisher , isbn ,category , type);
 		
+		int stock = (int)Integer.parseInt(request.getParameter("stock"));
+		
 		HttpSession session = request.getSession();
+		session.setAttribute("stock_data" , stock);
 		session.setAttribute("input_data", bo);
 		
 		String view = "WEB-INF/view/book_confirm.jsp";

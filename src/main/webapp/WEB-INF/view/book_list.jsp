@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.ArrayList" %>
-    <%@ page import="dto.BooklistDTO" %>
+    <%@ page import="dto.BookDTO" %>
     <%@ page import="dao.BookDAO" %>
 <!DOCTYPE html>
 <html>
@@ -37,13 +37,21 @@
 	<tr>
 		<td>図書名</td><td>出版社</td><td>著者</td>
 	</tr>
-	<%List<BooklistDTO> list = (ArrayList<BooklistDTO>)request.getAttribute("list");
-	for(BooklistDTO s : list) {
+	<%
+	List<BookDTO> list = (ArrayList<BookDTO>)request.getAttribute("list");
+	String cisbn = "";
+	for(BookDTO s : list) {
 	%>
+	<%if(s.getIsbn() .equals(cisbn)){
+		continue;
+	}else{
+		%>
 	<tr>
-		<td><a href="BookDetailServlet?title=<%=s.getTitle()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
+		<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
 	</table>
+	<% cisbn = s.getIsbn(); %>
+	<%} %>
 	<%} %>
 </body>
 </html>

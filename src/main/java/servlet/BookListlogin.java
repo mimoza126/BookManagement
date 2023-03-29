@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BooklistDTO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class BookListlogin
@@ -32,7 +32,7 @@ public class BookListlogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BooklistDTO> List = BookDAO.SelectAllBook();
+		List<BookDTO> List = BookDAO.SelectAllBookD();
 
 		request.setAttribute("list", List);
 		

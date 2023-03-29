@@ -34,6 +34,7 @@ public class BookDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
 		String title = request.getParameter("title");
+
 		List<BookDTO> list = BookDAO.SelectBookDetail(title);
 		int count = BookDAO.selectBookCount(title);
 

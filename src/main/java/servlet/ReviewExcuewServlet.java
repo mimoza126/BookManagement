@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
-import dto.BookDTO;
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class BookSearchlistlogin
+ * Servlet implementation class ReviewExcuewServlet
  */
-@WebServlet("/BookSearchlistlogin")
-public class BookSearchlistlogin extends HttpServlet {
+@WebServlet("/ReviewExcuewServlet")
+public class ReviewExcuewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookSearchlistlogin() {
+    public ReviewExcuewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,25 @@ public class BookSearchlistlogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String category = request.getParameter("category");
-		List<BookDTO> List = BookDAO.SelectSearchBookCategory(category);
-
-		request.setAttribute("list", List);
+		HttpSession session = request.getSession();
+		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+		int result = BookDAO.RegisterReview(re);
 		
-		String view = "WEB-INF/view/book_list_login.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		String path = "";
+		if(result == 1) {
+			// 登録に成功したので、sessionのデータを削除
+			//session.removeAttribute("input_data");
+			
+			path = "WEB-INF/view/review_success.jsp";
+			
+		} else {
+			
+			// 失敗した場合はパラメータ付きで登録画面に戻す
+			path = "WEB-INF/view/reivew_write.jsp";
+			
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
 	}
 
