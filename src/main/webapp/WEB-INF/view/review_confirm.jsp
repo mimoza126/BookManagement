@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ page import = "dto.ReviewDTO" %>
+
+<%@ page import = "dto.ReviewDTO" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,11 @@
 <%
 	ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
 	%>
-		口コミタイトル：<%=re.getTitle() %><br>
-		口コミ内容:<%=re.getComment() %><br>
-		<a href = "ReivewExcuteServlet">OK</a>
+
+		タイトル：<%=re.getTitle() %><br>
+		コメント:<%=re.getComment() %><br>
+		
+		<a href="ReviewExcuteServlet">OK</a><br>	
+
 </body>
 </html>

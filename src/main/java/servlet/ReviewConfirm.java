@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.Account;
+
 import dto.ReviewDTO;
 
 /**
@@ -32,31 +32,22 @@ public class ReviewConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Account user_id = (Account)session.getAttribute("user");
-		if(user_id == null){
-			//セッションの中身がnullであれば不正アクセスと判断し
-			//ログイン画面へ戻る
-			String view = "./";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
-			return;
-		}
-		int book_id = (int)Integer.parseInt(request.getParameter("id"));
+
 		
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("id"));
+		int book_id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String comment = request.getParameter("comment");
-		
-		
-		
+
 		
 		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
-		session.setAttribute("book_data" , book_id);
+		HttpSession session = request.getSession();
 		session.setAttribute("input_data", re);
 		
 		
-		String view = "WEB-INF/view/reivew_confirm.jsp";
+		String view = "WEB-INF/view/review_confirm.jsp";
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
 		dispatcher.forward(request, response);	
 	}

@@ -6,7 +6,7 @@ public class ReviewDTO {
 	private String title;
 	private String comment;
 	
-	
+
 	public ReviewDTO(int id, int book_id, String title, String comment) {
 		super();
 		this.id = id;
