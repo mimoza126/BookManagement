@@ -47,7 +47,7 @@
 	}else{
 	%>
 	<tr>
-		<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
+		<td><a href="BookIdDetailLogin?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
 	</table>
 	<% cisbn = s.getIsbn(); %>
