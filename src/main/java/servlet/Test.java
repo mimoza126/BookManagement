@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.BookDAO;
-import dto.BookDTO;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Searchlist
+ * Servlet implementation class Test
  */
-@WebServlet("/Searchlist")
-public class Searchlist extends HttpServlet {
+@WebServlet("/Test")
+public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Searchlist() {
+    public Test() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +28,15 @@ public class Searchlist extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String title = request.getParameter("title");
-		List<BookDTO> List = BookDAO.SearchBookName(title);
+		HttpSession session = request.getSession();
 
-		request.setAttribute("list", List);	
+		session.getAttribute("user");
 		
-		String view = "WEB-INF/view/book_list.jsp";
+		String view = "WEB-INF/view/test.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
