@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BooklistDTO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class BookSearchlist
@@ -32,10 +32,15 @@ public class BookSearchlist extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//HttpSession session = request.getSession();
 		request.getParameter("UTF-8");
 		String category = request.getParameter("category");
-		List<BooklistDTO> List = BookDAO.SelectSearchBook(category);
-
+		//session.setAttribute("serch_category", category);
+		
+		List<BookDTO> List = BookDAO.SelectSearchBookCategory(category);
+		
+		
+		
 		request.setAttribute("list", List);
 		
 		String view = "WEB-INF/view/book_list.jsp";

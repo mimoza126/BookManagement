@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.BookDAO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class ReviewWrite
@@ -28,6 +32,16 @@ public class ReviewWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		//	String book_id = request.getParameter("book_id");
+		List<BookDTO> List = BookDAO.SelectBookId(id);
+			
+			//List<ReviewDTO> review = BookDAO.SelectAllReview(book_id);
+
+		request.setAttribute("list", List);	
 		String view = "WEB-INF/view/review_write.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
