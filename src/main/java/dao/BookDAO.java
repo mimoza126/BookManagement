@@ -181,13 +181,13 @@ public static List<BooklistDTO> SearchBook(String title){
 	return result;
 }
 
-public static List<BooklistDTO> SelectBookDetail(String cate){
+public static List<BookDTO> SelectBookDetail(String cate){
 	
 	// 実行するSQL
-	String sql = "SELECT DISTINCT title,author,publisher,isbn FROM book WHERE title = ?";
+	String sql = "SELECT * FROM book WHERE title = ? LIMIT 1";
 	
 	// 返却用のListインスタンス
-	List<BooklistDTO> result = new ArrayList<>();
+	List<BookDTO> result = new ArrayList<>();
 			
 	try (
 			Connection con = getConnection();
@@ -201,13 +201,16 @@ public static List<BooklistDTO> SelectBookDetail(String cate){
 			while(rs.next()) {
 
 				// n行目のデータを取得
+				int id = Integer.parseInt(rs.getString("id"));
 				String title = rs.getString("title");
 				String author = rs.getString("author");
 				String publisher = rs.getString("publisher");
 				String isbn = rs.getString("isbn");
+				String category = rs.getString("category");
+				String type = rs.getString("type");
 				
 				// n件目のインスタンスを作成
-				BooklistDTO book = new BooklistDTO(title, author, publisher, isbn);
+				BookDTO book = new BookDTO(id, title, author, publisher, isbn, category, type);
 				
 				// インスタンスをListに追加
 				result.add(book);
@@ -223,4 +226,27 @@ public static List<BooklistDTO> SelectBookDetail(String cate){
 	// Listを返却する。0件の場合は空のListが返却される。
 	return result;
 }
+
+public static int selectBookCount(String keyword) {
+    int count = 0;
+    String sql = "SELECT COUNT(*) FROM book WHERE title LIKE ?";
+    try (
+        Connection con = getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+    ) {
+        pstmt.setString(1, "%" + keyword + "%");
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (URISyntaxException e) {
+        e.printStackTrace();
+    }
+    return count;
+}
+
+
 }

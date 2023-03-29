@@ -31,17 +31,17 @@ public class Searchlist extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String title = request.getParameter("search");
-		List<BooklistDTO> List = BookDAO.SearchBook(title);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8"); // requestのエンコーディングをUTF-8に設定する
+        String title = request.getParameter("name");
+        List<BooklistDTO> List = BookDAO.SearchBook(title);
 
-		request.setAttribute("list", List);
-		
-		String view = "WEB-INF/view/book_list.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
-	}
+        request.setAttribute("list", List);
+
+        String view = "WEB-INF/view/book_list.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+        dispatcher.forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -13,13 +13,13 @@
 </head>
 <body>
 
-	<form action="Searchlist" method="post">
-	<input type="text" name="search" placeholder="図書検索">
+	<form action="Searchlist" method="post" accept-charset="UTF-8">
+	<input type="text" name="name" placeholder="図書検索">
 	<input type="submit" value="検索">
 	</form>
 	
 	<form action="index.jsp" method="post">
-	<button type="submit" name="buttonName" value="buttonValue">ログアウト</button>
+	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
 	</form>
 	
 	<ul class="category-list">

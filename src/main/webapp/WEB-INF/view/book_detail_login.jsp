@@ -17,6 +17,8 @@
 	<h2><%=s.getTitle() %></h2>
 	<p>(著)  <%=s.getAuthor() %></p><p>出版社  <%=s.getPublisher() %></p>
 	
+	<a href="Test">借りる</a>
+	
 	<a href="BookReviewServlet?id=<%=s.getId()%>">口コミを書く</a>
 	<%} %>
 </body>
