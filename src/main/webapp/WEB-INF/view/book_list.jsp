@@ -37,12 +37,20 @@
 	</tr>
 	<%
 	List<BookDTO> list = (ArrayList<BookDTO>)request.getAttribute("list");
+	String cisbn = "";
 	for(BookDTO s : list) {
+	%>
+	<%
+	if(s.getIsbn().equals(cisbn)){
+	continue;
+	}else{
 	%>
 	<tr>
 		<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
 	</table>
+	<% cisbn = s.getIsbn(); %>
+	<%} %>
 	<%} %>
 </body>
 </html>
