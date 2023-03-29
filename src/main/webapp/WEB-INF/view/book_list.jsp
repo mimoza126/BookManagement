@@ -14,7 +14,7 @@
 <body>
 
 	<form action="Searchlist" method="post">
-	<input type="text" name="search" placeholder="図書検索">
+	<input type="text" name="title" placeholder="図書検索">
 	<input type="submit" value="検索">
 	</form>
 	

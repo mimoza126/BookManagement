@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import dao.AccountDAO;
 import dao.BookDAO;
 import dto.Account;
-import dto.BooklistDTO;
+import dto.BookDTO;
 import util.GenerateHashedPw;
 
 /**
@@ -65,7 +65,7 @@ request.getParameter("UTF-8");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", account);
 			
-			List<BooklistDTO> List = BookDAO.SelectAllBook();
+			List<BookDTO> List = BookDAO.SelectAllBookD();
 
 			request.setAttribute("list", List);
 			
