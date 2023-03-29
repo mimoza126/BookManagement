@@ -14,7 +14,7 @@
 		<p style="color:red">ログイン失敗</p>
 	<form action="LoginServlet" method="post">
 		【IDとPWを入力してください。】<br>
-		ログインID：<input type="text" name="mail" value="<%=request.getParameter("mail") %>"><br>
+		ログインID：<input type="text" name="email" value="<%=request.getParameter("email") %>"><br>
 		PW：<input type="password" name="pw"><br>
 		<input type="submit" value="ログイン">
 	</form>
@@ -25,13 +25,15 @@
 	%>
 	<form action="LoginServlet" method="post">
 		【IDとPWを入力してください。】<br>
-		ログインID：<input type="text" name="mail"><br>
+		ログインID：<input type="text" name="email"><br>
 		PW：<input type="password" name="pw"><br>
 		<input type="submit" value="ログイン">
 	</form>
 	<a href="RegisterFormServlet">新規登録はこちら</a>
 	<a href="BookListServlet">検索画面</a>
+
 	<a href = "BookRegester">図書登録</a>
+
 	<%
 		}
 	%>

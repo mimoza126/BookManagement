@@ -20,7 +20,9 @@
 	<p>(著)  <%=s.getAuthor() %></p><p>出版社  <%=s.getPublisher() %></p>
 		
 	
+
 	<a href = "ReviewWrite?id=<%=s.getId() %>">口コミを書く</a>
+
 	<%} %>
 	<%List<ReviewDTO> review = (ArrayList<ReviewDTO>)request.getAttribute("review");
 	for(ReviewDTO a : review) {

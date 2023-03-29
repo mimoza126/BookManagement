@@ -35,12 +35,14 @@ public class BookSearchlist extends HttpServlet {
 		//HttpSession session = request.getSession();
 		request.getParameter("UTF-8");
 		String category = request.getParameter("category");
+
 		//session.setAttribute("serch_category", category);
 		
 		List<BookDTO> List = BookDAO.SelectSearchBookCategory(category);
 		
 		
 		
+
 		request.setAttribute("list", List);
 		
 		String view = "WEB-INF/view/book_list.jsp";

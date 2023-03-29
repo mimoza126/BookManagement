@@ -65,7 +65,7 @@ public class AccountDAO {
 	
 	// メールアドレスを元にソルトを取得
 	public static String getSalt(String mail) {
-		String sql = "SELECT salt FROM users WHERE mail = ?";
+		String sql = "SELECT salt FROM users WHERE email = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -88,7 +88,7 @@ public class AccountDAO {
 		return null;
 	}
 	public static Account login(String mail, String hashedPw) {
-		String sql = "SELECT * FROM users WHERE mail = ? AND password = ?";
+		String sql = "SELECT * FROM users WHERE email = ? AND passward = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -104,7 +104,6 @@ public class AccountDAO {
 					String name = rs.getString("name");
 					String tell = rs.getString("tell");
 					String salt = rs.getString("salt");
-					String createdAt = rs.getString("created_at");
 					
 					return new Account( 0,name, mail, tell, salt, null, null);
 				}
