@@ -12,7 +12,9 @@
 <h2 class="center-block">図書登録</h2>
 <div class="box_con02">
 <form action="BookConfirmRegester"method="POST">
+
 <table class="formTable">
+
     <tr>
 		<th>図書名</th>
 		<td><input size="20"type = "text" name = "title" placeholder = "図書名"class="wide"></td>
