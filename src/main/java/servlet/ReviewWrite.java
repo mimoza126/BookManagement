@@ -36,7 +36,6 @@ public class ReviewWrite extends HttpServlet {
 		
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		//	String book_id = request.getParameter("book_id");
 		List<BookDTO> List = BookDAO.SelectBookId(id);
 			
 			//List<ReviewDTO> review = BookDAO.SelectAllReview(book_id);

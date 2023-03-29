@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
 import dto.BookDTO;
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class Searchlist
+ * Servlet implementation class BookIdDetailLogin
  */
-@WebServlet("/Searchlist")
-public class Searchlist extends HttpServlet {
+@WebServlet("/BookIdDetailLogin")
+public class BookIdDetailLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Searchlist() {
+    public BookIdDetailLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +32,18 @@ public class Searchlist extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String title = request.getParameter("title");
-		List<BookDTO> List = BookDAO.SearchBookName(title);
-
-		request.setAttribute("list", List);	
-		
-		String view = "WEB-INF/view/book_list.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+			int id = Integer.parseInt(request.getParameter("id"));
+		//	String book_id = request.getParameter("book_id");
+			List<BookDTO> List = BookDAO.SelectBookId(id);
+			List<ReviewDTO> review = BookDAO.SelectAllReviewId(id);
+			request.setAttribute("list", List);	
+			request.setAttribute("review", review);	
+			
+			String view = "WEB-INF/view/bookdetail_login.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

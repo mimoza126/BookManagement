@@ -12,8 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="Searchlistlogin" method="post">
-	<input type="text" name="name" placeholder="図書検索">
+<form action="Searchlist" method="post">
+	<input type="text" name="title" placeholder="図書検索">
 	<input type="submit" value="検索">
 	</form>
 	
@@ -41,15 +41,18 @@
 	String cisbn = "";
 	for(BookDTO s : list) {
 	%>
-	<%if(s.getIsbn() .equals(cisbn)){
-		continue;
+	<%
+	if(s.getIsbn().equals(cisbn)){
+	continue;
 	}else{
 		%>
 	<tr>
-	<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>	</tr>
+		<td><a href="BookIdDetailLogin?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
+	</tr>
 	</table>
 	<% cisbn = s.getIsbn(); %>
 	<%} %>
 	<%} %>
+	
 </body>
 </html>
