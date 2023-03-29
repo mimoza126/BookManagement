@@ -19,7 +19,7 @@
 	</form>
 	
 	<form action="index.jsp" method="post">
-	<button type="submit" name="buttonName" value="buttonValue">ログアウト</button>
+	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
 	</form>
 	
 	<ul class="category-list">

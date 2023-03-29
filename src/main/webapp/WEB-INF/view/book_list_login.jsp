@@ -45,7 +45,7 @@
 	if(s.getIsbn().equals(cisbn)){
 	continue;
 	}else{
-	%>
+		%>
 	<tr>
 		<td><a href="BookIdDetailLogin?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>

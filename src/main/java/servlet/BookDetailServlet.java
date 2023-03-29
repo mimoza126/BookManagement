@@ -34,13 +34,12 @@ public class BookDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
 		String title = request.getParameter("title");
-	//	String book_id = request.getParameter("book_id");
-		List<BookDTO> List = BookDAO.SelectBookTitle(title);
-		
-		//List<ReviewDTO> review = BookDAO.SelectAllReview(book_id);
 
-		request.setAttribute("list", List);	
-		//request.setAttribute("review", review);	
+		List<BookDTO> list = BookDAO.SelectBookDetail(title);
+		int count = BookDAO.selectBookCount(title);
+
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
 		
 		String view = "WEB-INF/view/book_detail.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
