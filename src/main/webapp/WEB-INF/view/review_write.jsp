@@ -15,12 +15,13 @@
 <title>review</title>
 </head>
 <body>
-<%List<BookDTO> list = (ArrayList<BookDTO>)request.getAttribute("list");
-	for(BookDTO s : list) {
+<%
+	
+	int book_id = (int)session.getAttribute("book_id");
 	%>
 
-<form action="ReviewConfirm"enctype="multipart/form-data"method="POST">
-<p><input type="hidden" name="id" value="<%=s.getId()%>"><%=s.getId()%></p>
+<form action="ReviewConfirm"method="POST">
+<p><input type="hidden" name="id" value="<%=book_id%>"><%=book_id%></p>
 <table class="formTable">
 	 <tr>
 		<th>タイトル</th>
@@ -32,7 +33,7 @@
 <textarea class="form-control" id="exampleFormControlTextarea1"name="comment" rows="10" cols="50" placeholder="内容を入力"></textarea><br>
 			<input type="submit" value="登録">
 				</form>
-					<%} %>
+					
 	
 	
 			

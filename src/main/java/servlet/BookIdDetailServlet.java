@@ -35,7 +35,6 @@ public class BookIdDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
-	//	String book_id = request.getParameter("book_id");
 		List<BookDTO> List = BookDAO.SelectBookId(id);
 		List<ReviewDTO> review = BookDAO.SelectAllReviewId(id);
 		request.setAttribute("list", List);	

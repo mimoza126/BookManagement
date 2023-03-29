@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import dto.ReviewDTO;
 
 /**
@@ -34,15 +33,17 @@ public class ReviewConfirm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		//request.setCharacterEncoding("UTF-8");
-		System.out.println(request.getParameter("id"));
-		int book_id = Integer.parseInt(request.getParameter("id"));
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		
+		int book_id = (int)session.getAttribute("book_id");
+		System.out.println(book_id);
 		String title = request.getParameter("title");
 		String comment = request.getParameter("comment");
 
 		
 		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("input_data", re);
 		
 		

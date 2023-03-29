@@ -34,7 +34,6 @@ public class BookIdDetailLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int id = Integer.parseInt(request.getParameter("id"));
-		//	String book_id = request.getParameter("book_id");
 			List<BookDTO> List = BookDAO.SelectBookId(id);
 			List<ReviewDTO> review = BookDAO.SelectAllReviewId(id);
 			request.setAttribute("list", List);	

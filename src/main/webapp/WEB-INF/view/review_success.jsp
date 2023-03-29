@@ -14,7 +14,7 @@
 <h3>下記の内容でを口コミを登録しました</h3>
 
 	<%
-	ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+	ReviewDTO re=(ReviewDTO)request.getAttribute("input");
 	%>
 		タイトル：<%=re.getTitle() %><br>
 		コメント:<%=re.getComment() %><br>
