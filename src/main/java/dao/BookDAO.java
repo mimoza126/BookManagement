@@ -223,4 +223,45 @@ public static List<BooklistDTO> SelectBookDetail(String cate){
 	// Listを返却する。0件の場合は空のListが返却される。
 	return result;
 }
+
+public static List<BookDTO> SelectBookLend(int cate){
+	
+	// 実行するSQL
+	String sql = "select * from book where id = ?";
+	
+	// 返却用のListインスタンス
+	List<BookDTO> result = new ArrayList<>();
+			
+	try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			){
+		
+		pstmt.setInt(1, cate);
+		
+		try (ResultSet rs = pstmt.executeQuery()){
+			
+			while(rs.next()) {
+
+				// n行目のデータを取得
+				int id = Integer.parseInt(rs.getString("id"));
+				String title = rs.getString("title");
+				
+				// n件目のインスタンスを作成
+				BookDTO book = new BookDTO(id, title, null, null, null, null, null);
+				
+				// インスタンスをListに追加
+				result.add(book);
+			}
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}catch (URISyntaxException e) {
+		e.printStackTrace();
+	}
+
+	// Listを返却する。0件の場合は空のListが返却される。
+	return result;
+}
 }
