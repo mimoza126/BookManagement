@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.BookDTO;
-import dto.ReviewDTO;
 import dto.BooklistDTO;
 import dto.ReviewDTO;
 
@@ -121,80 +120,56 @@ public static List<ReviewDTO> SelectAllReview(){
 		return result;
 	}
 	
+public static List<BookDTO> SelectSearchBookCategory(String cate){
 	
-		// 実行するSQL
-
-		String sql = "SELECT DISTINCT id,title,author,publisher FROM book WHERE category = ?";
+	// 実行するSQL
+	String sql = "SELECT * FROM book WHERE category = ?";
+	
+	// 返却用のListインスタンス
+	List<BookDTO> result = new ArrayList<>();
+			
+	try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			){
 		
-		// 返却用のListインスタンス
-		List<BooklistDTO> result = new ArrayList<>();
+		pstmt.setString(1, cate);
+		
+		try (ResultSet rs = pstmt.executeQuery()){
+			
+			while(rs.next()) {
+
+				// n行目のデータを取得
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				String publisher = rs.getString("publisher");
+				String isbn = rs.getString("isbn");
+				String category = rs.getString("category");
+				String type = rs.getString("type");
 				
-
-		try (
-				Connection con = getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				){
-			
-
-			pstmt.setString(1, SerchCategoryName);
-			pstmt.setString(2,SerchName);
-			try (ResultSet rs = pstmt.executeQuery()){
-				while(rs.next()) {
-					
-					int id = rs.getInt("id");
-          
-			pstmt.setString(1, cate);
-			
-			try (ResultSet rs = pstmt.executeQuery()){
 				
-				while(rs.next()) {
-
-					// n行目のデータを取得
-					int book_id = rs.getInt("id");
-					String title = rs.getString("title");
-					String author = rs.getString("author");
-					String publisher = rs.getString("publisher");
-					String isbn = rs.getString("isbn");
-					String category = rs.getString("category");
-					String type = rs.getString("type");
-	
-					BookDTO book = new BookDTO(id ,title , author , publisher , isbn , category , type);
-					
-					result.add(book);
-					
-				}
+				// n件目のインスタンスを作成
+				BookDTO book = new BookDTO(id,title, author, publisher,isbn,category,type);
+				
+				// インスタンスをListに追加
+				result.add(book);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} finally {
-			System.out.println(result + "件商品を検索しました。");
 		}
-		return result;
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}catch (URISyntaxException e) {
+		e.printStackTrace();
 	}
-	
-	
-	
-					
-					// n件目のインスタンスを作成
 
-					BooklistDTO book = new BooklistDTO(book_id,title, author, publisher);
-					
-					// インスタンスをListに追加
-					result.add(book);
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+	// Listを返却する。0件の場合は空のListが返却される。
+	return result;
+}
+	
+	
+	
 
-		// Listを返却する。0件の場合は空のListが返却される。
-		return result;
-	}
 
 public static List<BooklistDTO> SearchBook(String title){
 	
@@ -219,10 +194,10 @@ public static List<BooklistDTO> SearchBook(String title){
 				String title1 = rs.getString("title");
 				String author = rs.getString("author");
 				String publisher = rs.getString("publisher");
-				String isbn = rs.getString("isbn");
+				int id = Integer.parseInt(rs.getString("id"));
 				
 				// n件目のインスタンスを作成
-				BooklistDTO book = new BooklistDTO(title1, author, publisher, isbn);
+				BooklistDTO book = new BooklistDTO(id, title1, author, publisher);
 				
 				// インスタンスをListに追加
 				result.add(book);
@@ -239,14 +214,15 @@ public static List<BooklistDTO> SearchBook(String title){
 	return result;
 }
 
-public static List<BooklistDTO> SelectBookDetail(String cate){
+public static List<BookDTO> SelectBookDetail(String cate){
 	
 	// 実行するSQL
 
-	String sql = "SELECT DISTINCT id,title,author,publisher FROM book WHERE title = ?";
+	String sql = "SELECT * FROM book WHERE title = ? LIMIT 1";
+
 	
 	// 返却用のListインスタンス
-	List<BooklistDTO> result = new ArrayList<>();
+	List<BookDTO> result = new ArrayList<>();
 			
 	try (
 			Connection con = getConnection();
@@ -260,14 +236,18 @@ public static List<BooklistDTO> SelectBookDetail(String cate){
 			while(rs.next()) {
 
 				// n行目のデータを取得
-				int book_id = rs.getInt("id");
+
+				int id = Integer.parseInt(rs.getString("id"));
 				String title = rs.getString("title");
 				String author = rs.getString("author");
 				String publisher = rs.getString("publisher");
-
+				String isbn = rs.getString("isbn");
+				String category = rs.getString("category");
+				String type = rs.getString("type");
 				
 				// n件目のインスタンスを作成
-				BooklistDTO book = new BooklistDTO(book_id,title, author, publisher);
+				BookDTO book = new BookDTO(id, title, author, publisher, isbn, category, type);
+
 				
 				// インスタンスをListに追加
 				result.add(book);
@@ -284,6 +264,27 @@ public static List<BooklistDTO> SelectBookDetail(String cate){
 	return result;
 }
 
+
+public static int selectBookCount(String keyword) {
+    int count = 0;
+    String sql = "SELECT COUNT(*) FROM book WHERE title LIKE ?";
+    try (
+        Connection con = getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+    ) {
+        pstmt.setString(1, "%" + keyword + "%");
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (URISyntaxException e) {
+        e.printStackTrace();
+    }
+    return count;
+}
 public static List<BookDTO> AndBookSerch(String serchName , String SerchCategory) {
 	String serchname="%"+serchName+"%";
 	String serchcategory = "%"+SerchCategory+"%";
@@ -524,52 +525,7 @@ public static List<BookDTO> SelectBookId(int book_id){
 	// Listを返却する。0件の場合は空のListが返却される。
 	return result;
 }
-public static List<BookDTO> SelectSearchBookCategory(String cate){
-	
-	// 実行するSQL
-	String sql = "SELECT * FROM book WHERE category = ?";
-	
-	// 返却用のListインスタンス
-	List<BookDTO> result = new ArrayList<>();
-			
-	try (
-			Connection con = getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			){
-		
-		pstmt.setString(1, cate);
-		
-		try (ResultSet rs = pstmt.executeQuery()){
-			
-			while(rs.next()) {
 
-				// n行目のデータを取得
-				int id = rs.getInt("id");
-				String title = rs.getString("title");
-				String author = rs.getString("author");
-				String publisher = rs.getString("publisher");
-				String isbn = rs.getString("isbn");
-				String category = rs.getString("category");
-				String type = rs.getString("type");
-				
-				
-				// n件目のインスタンスを作成
-				BookDTO book = new BookDTO(id,title, author, publisher,isbn,category,type);
-				
-				// インスタンスをListに追加
-				result.add(book);
-			}
-		}
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}catch (URISyntaxException e) {
-		e.printStackTrace();
-	}
-
-	// Listを返却する。0件の場合は空のListが返却される。
-	return result;
-}
 public static List<ReviewDTO> SelectAllReviewId(int review_id){
 	
 	// 実行するSQL
@@ -615,6 +571,7 @@ public static List<ReviewDTO> SelectAllReviewId(int review_id){
 
 	// Listを返却する。0件の場合は空のListが返却される。
 	return result;
+
 }
 
 

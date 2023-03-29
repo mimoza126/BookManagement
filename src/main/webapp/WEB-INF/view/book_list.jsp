@@ -13,13 +13,13 @@
 </head>
 <body>
 
-	<form action="Searchlist" method="post">
-	<input type="text" name="search" placeholder="図書検索">
+	<form action="Searchlist" method="post" accept-charset="UTF-8">
+	<input type="text" name="name" placeholder="図書検索">
 	<input type="submit" value="検索">
 	</form>
 	
 	<form action="index.jsp" method="post">
-	<button type="submit" name="buttonName" value="buttonValue">ログアウト</button>
+	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
 	</form>
 	
 	<ul class="category-list">
@@ -39,12 +39,19 @@
 	</tr>
 	<%
 	List<BookDTO> list = (ArrayList<BookDTO>)request.getAttribute("list");
+	String cisbn = "";
 	for(BookDTO s : list) {
 	%>
+	<%if(s.getIsbn() .equals(cisbn)){
+		continue;
+	}else{
+		%>
 	<tr>
 		<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
 	</table>
+	<% cisbn = s.getIsbn(); %>
+	<%} %>
 	<%} %>
 </body>
 </html>

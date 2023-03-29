@@ -14,16 +14,16 @@ import dao.BookDAO;
 import dto.BooklistDTO;
 
 /**
- * Servlet implementation class Searchlist
+ * Servlet implementation class Searchlistlogin
  */
-@WebServlet("/Searchlist")
-public class Searchlist extends HttpServlet {
+@WebServlet("/Searchlistlogin")
+public class Searchlistlogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Searchlist() {
+    public Searchlistlogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +38,7 @@ public class Searchlist extends HttpServlet {
 
         request.setAttribute("list", List);
 
-        String view = "WEB-INF/view/book_list.jsp";
+        String view = "WEB-INF/view/book_list_login.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(view);
         dispatcher.forward(request, response);
     }
