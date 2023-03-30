@@ -200,10 +200,10 @@ public class ManagerDAO {
 
 						
 						
-public static List<BookDTO> searchBookByID( int keyword){
+public static List<BookDTO> searchBookByID(int keyword){
 							
 							// 実行するSQL
-							String sql = "SELECT * FROM book WHERE id LIKE ?";
+							String sql = "SELECT * FROM book WHERE id = ?";
 							// ダメな例 String sql = "SELECT * FROM employee WHERE name LIKE %?%";
 							// なぜなら値を埋め込むとSELECT * FROM employee WHERE name LIKE %'keyword'%となるから。
 							
@@ -216,7 +216,7 @@ public static List<BookDTO> searchBookByID( int keyword){
 									){
 								
 								// %や_はここで文字列結合する。そうすると'%keyword%'となる。
-								pstmt.setString(1, "%" + keyword + "%");
+								pstmt.setInt(1, keyword );
 								
 								// SQL実行！
 								// ResultSetもcloseする必要があるのでtry-with-resources文を使う
@@ -250,6 +250,72 @@ public static List<BookDTO> searchBookByID( int keyword){
 							// Listを返却する。0件の場合は空のListが返却される。
 							return result;
 						}
+
+public static int UpdateBook(BookDTO bo) {
+	String sql = "UPDATE book SET type = ? WHERE id = ?";
+	int result = 0;
+	try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			){
+		   pstmt.setString(1, bo.getType());
+           pstmt.setInt(2, bo.getId());
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} catch (URISyntaxException e) {
+		e.printStackTrace();
+	} finally {
+		System.out.println(result + "件編集しました。");
+	}
+	return result;
+}
+public static int UpdateBook(LendingDTO bo) {
+	String sql = "UPDATE lending SET return_status = ? WHERE id = ?";
+	int result = 0;
+	try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			){
+		   pstmt.setString(1, bo.getReturn_status());
+           pstmt.setInt(2, bo.getId());
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} catch (URISyntaxException e) {
+		e.printStackTrace();
+	} finally {
+		System.out.println(result + "件編集しました。");
+	}
+	return result;
+}
+
+//引数の社員番号を元にデータを1件 DELETE するメソッド
+		public static void deleteBook( int id) {
+			String sql = "DELETE FROM book WHERE id = ?";
+			int result = 0;
+
+			try (
+					Connection con = getConnection();	// DB接続
+					PreparedStatement pstmt = con.prepareStatement(sql);			// 構文解析
+					){
+
+				pstmt.setInt(1,id);
+
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			} finally {
+				System.out.println(result + "件更新しました。");
+			}
+		}
+
+
+
+
+
 
 						
 }

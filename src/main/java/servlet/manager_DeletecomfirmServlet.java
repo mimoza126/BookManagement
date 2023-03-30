@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ManagerDAO;
+
 /**
  * Servlet implementation class manager_DeletecomfirmServlet
  */
@@ -28,13 +30,25 @@ public class manager_DeletecomfirmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id=Integer.parseInt(request.getParameter("id"));
+		request.setCharacterEncoding("UTF-8");
+
+		int id=Integer.parseInt(request.getParameter("type"));
 		
 		
-		String view = "WEB-INF/view/manager_deletecomfirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
-	}
+		
+		if( id > 0) {
+			ManagerDAO.deleteBook(id);
+			System.out.println("削除しました。");
+			String view = "WEB-INF/view/manager_deletecomfirm.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+		}
+			
+		}
+		
+		
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class managerEditingServlet
+ * Servlet implementation class managerMenuServlet
  */
-@WebServlet("/managerEditingServlet")
-public class managerEditingServlet extends HttpServlet {
+@WebServlet("/managerMenuServlet")
+public class managerMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public managerEditingServlet() {
+    public managerMenuServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +28,7 @@ public class managerEditingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String title_book =request.getParameter("title");
-		
-		String view = "WEB-INF/view/manager_edit.jsp";
+		String view = "WEB-INF/view/manager_menu.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

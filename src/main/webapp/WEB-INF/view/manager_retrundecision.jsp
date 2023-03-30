@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ page import="dto.UsersDTO" %>
+    <%@ page import="java.util.List" %>
+    <%@ page import="java.util.ArrayList" %>
+    <%@ page import="dto.BooklistDTO" %>
+    <%@ page import="dao.BookDAO" %>
+       <%@ page import="dto.UsersDTO" %>
 <%@ page import="dto.LendingDTO" %>
 <%@ page import="dto.BookDTO" %>
 <%@ page import="dao.ManagerDAO" %>
@@ -13,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header class="header">
+	<header class="header">
       <!-- ヘッダーロゴ -->
       <div class="logo">管理者</div>
     
@@ -39,17 +43,25 @@
       </div>
     </header>
 
-	<h1>返却しますか？</h1>
+	<h1>返却しました。</h1>
 
-<% request.setCharacterEncoding("UTF-8");
-	int i;%>
+	<% request.setCharacterEncoding("UTF-8");
+	int i;
+	int book_id=0;%>
 	<table border="1">
 	<tr>
 	<td>本のID</td><td><%=i=Integer.parseInt(request.getParameter("id")) %></td>
 	</tr>
+	
+	<% List <LendingDTO> li =ManagerDAO.selectAlllendingDTO();
+	for(LendingDTO k : li){
+	if(i == k.getId()){%>
+	<% book_id=k.getBook_id();%>
+	<% } %> 
+	<% } %> 
 		<% List <BookDTO>list1= ManagerDAO.selectAllBookDTO();
 for(BookDTO a : list1){ %>
-<% if( i == a.getId()) {%>
+<% if( book_id == a.getId()) {%>
 <tr>
 		<td>本の名前</td><td><%=a.getTitle() %></td>
 </tr>
@@ -60,7 +72,7 @@ for(BookDTO a : list1){ %>
 		 List <UsersDTO>list3= ManagerDAO.selectAllUsersDTO();
 		int user=0; %>
 <% for(LendingDTO e : list2){ %>
-<% if( i == e.getBook_id()) {%>
+<% if( book_id == e.getBook_id()) {%>
 		<% user=e.getUser_id(); %>
 		<% } %>
 <% } %>	
@@ -84,19 +96,21 @@ for(BookDTO a : list1){ %>
 
 <% } %>
 <% } %>
+		
 		<% List <LendingDTO>list4= ManagerDAO.selectAlllendingDTO();%>
 <% for(LendingDTO o : list4){ %>
-		<% if(i == o.getBook_id()){ %>
+		<% if(book_id == o.getBook_id()){ %>
 <tr>
 		<td>貸し出し日</td><td><%=o.getLendin_date() %></td>
 </tr>			
 <% } %>	
 <% } %>	
 		
+		
 		<% List <BookDTO>list5= ManagerDAO.selectAllBookDTO(); 
 		String type ="新";%>
 <% for(BookDTO q : list5){ %>
-<% if( i == q.getId() && type.equals(q.getId())) {%>
+<% if( book_id == q.getId() && type.equals(q.getId())) {%>
 	<tr>
 		<td>貸出日数</td><td>7</td>
 		<% }else if(i == q.getId()){%>
@@ -106,16 +120,13 @@ for(BookDTO a : list1){ %>
 		<% } %>
 	<% List <LendingDTO>list6= ManagerDAO.selectAlllendingDTO();%>
 <% for(LendingDTO o : list6){ %>
-		<% if(i == o.getBook_id()){ %>
+<% if(book_id == o.getBook_id()){ %>
 <tr>
 		<td>返却日</td><td><%=o.getReturn_data() %></td>
 </tr>			
+<% } %>	
+<% } %>	
 
 </table>
-	<a href="manager_retrundecisionServlet?id=<%=o.getId() %>">返却</a>
-<% } %>	
-<% } %>	
-		<a href="manager_DetailsServlet?id=<%=i %>">戻る</a>
-	
 </body>
 </html>

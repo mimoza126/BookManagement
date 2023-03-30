@@ -10,6 +10,8 @@ public class BookDTO {
 	private String type;
 	
 	
+	
+	
 	public BookDTO(int id, String title, String author, String publisher, String isbn, String category, String type) {
 		super();
 		this.id = id;
@@ -21,6 +23,10 @@ public class BookDTO {
 		this.type = type;
 	}
 
+
+	public BookDTO(int edit, String type) {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 
 	public int getId() {
 		return id;

@@ -21,6 +21,6 @@
 		
 	
 	
-<a href="MenuServlet">戻る</a>
+<a href="managerMenuServlet">戻る</a>
 </body>
 </html>

@@ -56,8 +56,18 @@ request.getParameter("UTF-8");
 		Account account = AccountDAO.login(email, hashedPw);
 
 		// 一致するユーザがいなければ、ログイン失敗
+			
+			
 		if(account == null) {
 			String view = "./?error=1";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+		}  else if(account.getMail().equals("kanrisha@123")) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("root", account);
+			
+			String view = "WEB-INF/view/manager_menu.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		} else {
