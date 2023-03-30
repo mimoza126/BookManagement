@@ -537,7 +537,6 @@ public static List<BookDTO> SelectBookLend(int cate){
 public static List<ReviewDTO> SelectAllReviewId(int review_id){
 	
 	// 実行するSQL
-	
 	String sql = "SELECT * FROM review "
 			+ "INNER JOIN book "
 			+ "ON book.id = review.book_id "
