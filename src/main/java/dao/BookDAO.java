@@ -467,7 +467,6 @@ public static List<BookDTO> SelectBookId(int book_id){
 			while(rs.next()) {
 
 				// n行目のデータを取得
-				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String author = rs.getString("author");
 				String publisher = rs.getString("publisher");
@@ -477,7 +476,7 @@ public static List<BookDTO> SelectBookId(int book_id){
 				
 				
 				// n件目のインスタンスを作成
-				BookDTO book = new BookDTO(id,title, author, publisher,isbn,category,type);
+				BookDTO book = new BookDTO(book_id,title, author, publisher,isbn,category,type);
 				
 				// インスタンスをListに追加
 				result.add(book);

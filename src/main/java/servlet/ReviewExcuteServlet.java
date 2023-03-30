@@ -37,11 +37,10 @@ public class ReviewExcuteServlet extends HttpServlet {
 		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
 		//int stock = (int)session.getAttribute("stock_data");
 		
-	
-			
 			int result = BookDAO.RegisterReview(re);
-			
+			System.out.println(result);
 			String path = "";
+			request.setAttribute("input", re);
 			if(result == 1) {
 				// 登録に成功したので、sessionのデータを削除
 				session.removeAttribute("input_data");
@@ -52,10 +51,9 @@ public class ReviewExcuteServlet extends HttpServlet {
 			} else {
 				// 失敗した場合はパラメータ付きで登録画面に戻す
 				path = "WEB-INF/view/review_write.jsp";
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-				dispatcher.forward(request, response);
 			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 	}
 
 	/**
