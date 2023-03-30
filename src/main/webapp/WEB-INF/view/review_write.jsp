@@ -23,7 +23,7 @@
 <table class="formTable">
 	 <tr>
 		<th>口コミタイトル</th>
-		<td><input size="20"type = "text" name = "title" placeholder = "タイトル"class="wide"></td>
+		<td><input type = "text" name = "title" placeholder = "最も伝えたいポイントは何ですか？"class="wide"></td>
 	</tr>
 	 
 </table>

@@ -21,16 +21,27 @@
 	<h2><%=s.getIsbn() %></h2>
 	<h2><%=s.getTitle() %></h2>
 	<p>(著)  <%=s.getAuthor() %></p><p>出版社  <%=s.getPublisher() %></p>
-		
+<div class="book-details">
+  <div class="book-info">
+    <h2><%= s.getIsbn() %></h2>
+    <h1><%= s.getTitle() %></h1>
+    <p>(著) <%= s.getAuthor() %></p>
+    <p>出版社 <%= s.getPublisher() %></p>
+  </div>	
 	<%} %>
+	<div class="reviews">
 	<%
 	List<ReviewDTO> review = (ArrayList<ReviewDTO>)request.getAttribute("review");
 	for(ReviewDTO a : review) {
 	%>
-		
+		<div class="review">
+        <h3><%= a.getTitle() %></h3>
+        <p><%= a.getComment() %></p>
+      </div>
 		<h2><%=a.getTitle() %></h2>
 		<h2><%=a.getComment() %></h2>
 		<%} %>
-		
+	</div>	
+	</div>
 </body>
 </html>

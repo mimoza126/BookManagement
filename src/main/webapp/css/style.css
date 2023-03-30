@@ -26,139 +26,110 @@ li.category-item a:hover {
 
 
 
-.formTable {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+/* フォーム全体のスタイル */
+form {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 800px;
+  font-family: sans-serif;
 }
 
-.formTable th,
-.formTable td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
+/* フォーム内テーブルのスタイル */
+.formTable {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .formTable th {
-  width: 25%;
-}
-
-.formTable td input[type="text"],
-.formTable td textarea {
-  width: 100%;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  line-height: 1.5;
+  text-align: left;
+}
+
+.formTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* フォーム内テキストフィールドのスタイル */
+input[type="text"],
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
   box-sizing: border-box;
-}
-
-.formTable td input[type="text"] {
-  height: 50px;
-}
-
-.formTable td textarea {
-  height: 150px;
-}
-
-.formTable td input[type="submit"] {
-   display: block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
   font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.wide {
+  width: 80%;
+}
+
+/* 登録ボタンのスタイル */
+input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.formTable td input[type="submit"]:hover {
-  background-color: #0062cc;
-}
-.formTable td input[type="submit"] {
- 
-  margin: 0 auto;
-  /* 送信ボタンを中央に配置する */
+  font-size: 16px;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.formTable td input[type="submit"]:hover {
-  background-color: #0062cc;
-}
-
-
-
-.bookDetails {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.bookDetails h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0 0 10px;
-  color: #333;
-}
-
-.bookDetails p {
-  font-size: 16px;
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails .review {
-  margin-top: 30px;
-}
-
-.bookDetails .review h3 {
-  font-size: 20px;
-  margin: 0 0 10px;
-  color: #333;
-}
-
-.bookDetails .review p {
-  font-size: 16px;
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails .review .title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0 0 5px;
-  color: #333;
-}
-
-.bookDetails .review .comment {
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  text-align: center;
   text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
 }
 
-.bookDetails a:hover {
-  background-color: #0062cc;
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.book-info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.book-info h1 {
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review {
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.review h3 {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.review p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
 }
