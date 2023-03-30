@@ -1,3 +1,13 @@
+@charset "UTF-8";
+
+html {
+  text-align: center;
+}
+
+.login {
+	text-align: right;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -114,4 +124,5 @@ li.category-item a:hover {
 /* アイコンがクリックされたらメニューを表示 */
 #drawer_input:checked ~ .nav_content {
   left: 0;/* メニューを画面に入れる */
+main
 }

@@ -8,9 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>削除</title>
 </head>
 <body>
 <header class="header">
@@ -44,6 +45,7 @@
 
 
 <a href="managerMenuServlet">図書一覧</a>
+
 
 </body>
 </html>

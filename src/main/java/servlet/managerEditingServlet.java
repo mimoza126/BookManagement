@@ -30,6 +30,7 @@ public class managerEditingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String title_book =request.getParameter("title");
+
 		
 		String view = "WEB-INF/view/manager_edit.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

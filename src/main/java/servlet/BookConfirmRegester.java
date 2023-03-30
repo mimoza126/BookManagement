@@ -45,6 +45,8 @@ public class BookConfirmRegester extends HttpServlet {
 		
 		BookDTO bo = new BookDTO( 0 , title , author , publisher , isbn ,category , type);
 		
+		
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("input_data", bo);
 		

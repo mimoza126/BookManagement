@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BooklistDTO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class BookDetailServlet
@@ -34,9 +34,12 @@ public class BookDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
 		String title = request.getParameter("title");
-		List<BooklistDTO> List = BookDAO.SelectBookDetail(title);
 
-		request.setAttribute("list", List);
+		List<BookDTO> list = BookDAO.SelectBookDetail(title);
+		int count = BookDAO.selectBookCount(title);
+
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
 		
 		String view = "WEB-INF/view/book_detail.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

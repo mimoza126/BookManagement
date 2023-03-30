@@ -8,20 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.ManagerDAO;
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class manager_DeletecomfirmServlet
+ * Servlet implementation class ReviewConfirm
  */
-@WebServlet("/manager_DeletecomfirmServlet")
-public class manager_DeletecomfirmServlet extends HttpServlet {
+@WebServlet("/ReviewConfirm")
+public class ReviewConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public manager_DeletecomfirmServlet() {
+    public ReviewConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +32,26 @@ public class manager_DeletecomfirmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		
+		int book_id = (int)session.getAttribute("book_id");
+		System.out.println(book_id);
+		String title = request.getParameter("title");
+		String comment = request.getParameter("comment");
 
-		int id=Integer.parseInt(request.getParameter("type"));
+		
+		ReviewDTO re = new ReviewDTO( 0 ,book_id,title ,comment);
+		
+		session.setAttribute("input_data", re);
 		
 		
-		
-		if( id > 0) {
-			ManagerDAO.deleteBook(id);
-			System.out.println("削除しました。");
-			String view = "WEB-INF/view/manager_deletecomfirm.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
-		}
-			
-		}
-		
-		
-	
-	
+		String view = "WEB-INF/view/review_confirm.jsp";
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
+		dispatcher.forward(request, response);	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

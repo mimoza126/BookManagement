@@ -204,6 +204,7 @@ public static List<BookDTO> searchBookByID(int keyword){
 							
 							// 実行するSQL
 							String sql = "SELECT * FROM book WHERE id = ?";
+
 							// ダメな例 String sql = "SELECT * FROM employee WHERE name LIKE %?%";
 							// なぜなら値を埋め込むとSELECT * FROM employee WHERE name LIKE %'keyword'%となるから。
 							
@@ -216,7 +217,9 @@ public static List<BookDTO> searchBookByID(int keyword){
 									){
 								
 								// %や_はここで文字列結合する。そうすると'%keyword%'となる。
+
 								pstmt.setInt(1, keyword );
+
 								
 								// SQL実行！
 								// ResultSetもcloseする必要があるのでtry-with-resources文を使う

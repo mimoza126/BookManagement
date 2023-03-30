@@ -2,27 +2,27 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.ArrayList" %>
-    <%@ page import="dto.BooklistDTO" %>
+    <%@ page import="dto.BookDTO" %>
     <%@ page import="dao.BookDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/style.css">
-<title>Insert title here</title>
+<title>図書一覧</title>
 </head>
 <body>
-	<form action="BooksearchList" method="post">
-	<input type="text" name="name" placeholder="図書検索">
-	<input type="submit" value="検索">
-	</form>
-	
-	<form action="index.jsp" method="post">
+	<form class="login"action="index.jsp" method="post">
 	<button type="submit" name="buttonName" value="buttonValue">ログアウト</button>
 	</form>
 	
+<form action="Searchlistlogin" method="post">
+	<input type="text" name="title" placeholder="図書検索">
+	<input type="submit" value="検索">
+	</form>
+	
 	<ul class="category-list">
-	  <li class="category-item"><a href="BookListServlet">すべて</a> </li>
+	  <li class="category-item"><a href="BookListlogin">すべて</a> </li>
 	  <li class="category-item"><a href="BookSearchlistlogin?category=文芸">文芸</a></li>
 	  <li class="category-item"><a href="BookSearchlistlogin?category=実用書">実用書</a></li>
 	  <li class="category-item"><a href="BookSearchlistlogin?category=ビジネス書・経済・経営">ビジネス書・経済・経営</a></li>
@@ -36,13 +36,23 @@
 	<tr>
 		<td>図書名</td><td>出版社</td><td>著者</td>
 	</tr>
-	<%List<BooklistDTO> list = (ArrayList<BooklistDTO>)request.getAttribute("list");
-	for(BooklistDTO s : list) {
+	<%
+	List<BookDTO> list = (ArrayList<BookDTO>)request.getAttribute("list");
+	String cisbn = "";
+	for(BookDTO s : list) {
 	%>
+	<%
+	if(s.getIsbn().equals(cisbn)){
+	continue;
+	}else{
+		%>
 	<tr>
-		<td><a href="BookDetailServletogin?title=<%=s.getTitle()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
+		<td><a href="BookIdDetailLogin?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
-	</table>
+	<% cisbn = s.getIsbn(); %>
 	<%} %>
+	<%} %>
+	</table>
+	
 </body>
 </html>

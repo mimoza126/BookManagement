@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>確認画面</title>
+<title>アカウント登録確認画面</title>
 </head>
 <body>
 	<p>下記の内容で登録します。よろしいですか？</p>

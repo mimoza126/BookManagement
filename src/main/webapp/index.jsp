@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン</title>
 </head>
 <body>
 
@@ -32,6 +32,9 @@
 	</form>
 	<a href="RegisterFormServlet">新規登録はこちら</a>
 	<a href="BookListServlet">検索画面</a>
+
+	<a href = "BookRegester">図書登録</a>
+
 	<%
 		}
 	%>

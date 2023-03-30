@@ -9,12 +9,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>ログ</h1>
 	<a href="managerMenuServlet">図書一覧</a>
+
 	<form action="manager_SearchServlet">
 	<input type="search" name="name">
 			<input type="submit" value="検索">
@@ -31,6 +32,7 @@
 	String search=request.getParameter("name");%>
 	
 	<% List <BookDTO>list= ManagerDAO.searchBookBytitle(search);
+
 	for(BookDTO e : list){ %> 
 		<% List <LendingDTO> list2=ManagerDAO.selectAlllendingDTO();
 		for(LendingDTO a : list2) {%>

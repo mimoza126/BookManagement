@@ -9,9 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>編集画面</title>
 </head>
 <body>
 <header class="header">
@@ -45,17 +46,20 @@
 	String title= request.getParameter("title"); %>
 <h1><%=title %></h1>
 
+
 	<table border="1">
 	<tr>
 		<th>ID</th>
 				<th>新/旧</th>
 	</tr>
+
 	<% List <BookDTO> list =ManagerDAO.selectAllBookDTO(); %>
 	<% for( BookDTO e : list ){	%>
 	
 	<% if(title.equals(e.getTitle()) ) {%>
 	<tr>
 		<td><a href="managerEditdetailsServlet?id=<%=e.getId() %>"><%=e.getId() %> </a></td>
+
 		<td><%=e.getType() %> </td>
 	</tr>
 	

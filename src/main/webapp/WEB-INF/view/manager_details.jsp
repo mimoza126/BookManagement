@@ -9,9 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title貸出履歴</title>
 </head>
 <body>
 <header class="header">

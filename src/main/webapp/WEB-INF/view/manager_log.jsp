@@ -10,7 +10,7 @@
 <head>
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>履歴title>
 </head>
 <body>
 <header class="header">
@@ -41,6 +41,7 @@
 
 
 	<a href="managerMenuServlet">図書一覧</a>
+
 	<form action="manager_SearchServlet">
 	<input type="search" name="name">
 			<input type="submit" value="検索">
@@ -81,8 +82,6 @@ for(UsersDTO b : list3){ %>
 </tr>
 
 <% } %>
-
-
 
 	</table>
 		

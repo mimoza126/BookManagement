@@ -5,6 +5,7 @@
 <%@ page import="dto.BookDTO" %>
 <%@ page import="dao.ManagerDAO" %>
 <%@ page import="java.util.*" %>
+
 <%@ page import="javax.servlet.ServletException" %>
 <%@ page import="javax.servlet.annotation.WebServlet" %>
 <%@ page import="javax.servlet.http.HttpServlet" %>
@@ -17,7 +18,7 @@
 <head>
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>編集・削除</title>
 </head>
 <body>
 
@@ -53,11 +54,14 @@ System.out.print("ここには来てる"+book_id);%>
 
 <form action="manager_DeletecomfirmServlet?id=<%=book_id %>">
  <table border="1">
+
  <tr>
   <th>ID</th>
  </tr>
 <% List <BookDTO>list= ManagerDAO.searchBookByID(book_id);
+
 	for(BookDTO e : list){%>
+
 		<tr>
 			<td><%=e.getId() %></td>
 		</tr>
@@ -69,6 +73,7 @@ System.out.print("ここには来てる"+book_id);%>
 		<a href="managerEditingServlet">戻る</a>
 				<input type="submit" value="確定">
 				<% } %>
+
 </form>
 </body>
 </html>

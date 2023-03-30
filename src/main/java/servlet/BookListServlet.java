@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BooklistDTO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class BookListServlet
@@ -33,13 +33,7 @@ public class BookListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
-
-
-		List<BooklistDTO> List = BookDAO.SelectAllBook();
-
-		
-
-
+		List<BookDTO> List = BookDAO.SelectAllBookD();
 		request.setAttribute("list", List);
 		
 		String view = "WEB-INF/view/book_list.jsp";

@@ -8,9 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="css/style.css">
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>返却画面</title>
 </head>
 <body>
 <header class="header">
@@ -84,6 +86,7 @@ for(BookDTO a : list1){ %>
 
 <% } %>
 <% } %>
+
 		<% List <LendingDTO>list4= ManagerDAO.selectAlllendingDTO();%>
 <% for(LendingDTO o : list4){ %>
 		<% if(i == o.getBook_id()){ %>
@@ -115,6 +118,7 @@ for(BookDTO a : list1){ %>
 	<a href="manager_retrundecisionServlet?id=<%=o.getId() %>">返却</a>
 <% } %>	
 <% } %>	
+
 		<a href="manager_DetailsServlet?id=<%=i %>">戻る</a>
 	
 </body>

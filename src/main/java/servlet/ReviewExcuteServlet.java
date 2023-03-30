@@ -1,3 +1,4 @@
+
 package servlet;
 
 import java.io.IOException;
@@ -8,20 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.ManagerDAO;
+import dao.BookDAO;
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class manager_DeletecomfirmServlet
+ * Servlet implementation class ReviewExcuteServlet
  */
-@WebServlet("/manager_DeletecomfirmServlet")
-public class manager_DeletecomfirmServlet extends HttpServlet {
+@WebServlet("/ReviewExcuteServlet")
+public class ReviewExcuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public manager_DeletecomfirmServlet() {
+    public ReviewExcuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +33,28 @@ public class manager_DeletecomfirmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
-
-		int id=Integer.parseInt(request.getParameter("type"));
+		HttpSession session = request.getSession();
+		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+		//int stock = (int)session.getAttribute("stock_data");
 		
-		
-		
-		if( id > 0) {
-			ManagerDAO.deleteBook(id);
-			System.out.println("削除しました。");
-			String view = "WEB-INF/view/manager_deletecomfirm.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			int result = BookDAO.RegisterReview(re);
+			System.out.println(result);
+			String path = "";
+			request.setAttribute("input", re);
+			if(result == 1) {
+				// 登録に成功したので、sessionのデータを削除
+				session.removeAttribute("input_data");
+			//session.removeAttribute("stock_data");
+				
+				path = "WEB-INF/view/review_success.jsp";
+				
+			} else {
+				// 失敗した場合はパラメータ付きで登録画面に戻す
+				path = "WEB-INF/view/review_write.jsp";
+			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
-		}
-			
-		}
-		
-		
-	
-	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
