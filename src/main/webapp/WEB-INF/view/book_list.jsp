@@ -11,15 +11,14 @@
 <link rel="stylesheet" href="css/style.css">
 <title>Insert title here</title>
 </head>
-<body>
-
+<body>	
+	<form class="login" action="index.jsp" method="post">
+	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
+	</form>
+	
 	<form action="Searchlist" method="post">
 	<input type="text" name="title" placeholder="図書検索">
 	<input type="submit" value="検索">
-	</form>
-	
-	<form action="index.jsp" method="post">
-	<button type="submit" name="buttonName" value="buttonValue">ログイン</button>
 	</form>
 	
 	<ul class="category-list">
@@ -50,9 +49,9 @@
 	<tr>
 		<td><a href="BookIdDetailServlet?id=<%=s.getId()%>"><%=s.getTitle()%></a></td><td><%=s.getPublisher()%></td><td><%=s.getAuthor()%></td>
 	</tr>
-	</table>
 	<% cisbn = s.getIsbn(); %>
 	<%} %>
 	<%} %>
+	</table>
 </body>
 </html>

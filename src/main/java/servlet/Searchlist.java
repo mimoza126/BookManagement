@@ -33,8 +33,9 @@ public class Searchlist extends HttpServlet {
 	 */
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
+		System.out.println(title);
 		List<BookDTO> List = BookDAO.SearchBookName(title);
 
 		request.setAttribute("list", List);	

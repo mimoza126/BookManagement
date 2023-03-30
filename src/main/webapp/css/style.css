@@ -1,3 +1,13 @@
+@charset "UTF-8";
+
+html {
+  text-align: center;
+}
+
+.login {
+	text-align: right;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,4 +31,17 @@ li.category-item a {
 }
 li.category-item a:hover {
   background-color: #ddd; /* マウスオーバー時の背景色を設定 */
+}
+
+table {
+
+width: 100%;
+border-collapse: collapse;
+}
+td {
+padding: 10px;
+text-align: center;
+border: 1px solid #ddd;
+transition: background-color 0.3s ease-in-out;
+box-sizing: border-box;
 }
