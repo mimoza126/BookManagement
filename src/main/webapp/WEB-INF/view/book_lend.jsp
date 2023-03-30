@@ -10,7 +10,7 @@
 	<h1>本のIDを入力して下さい</h1>
 	<form action="BookLendServlet" method="post">
 		ID：<input type="text" name="id"><br>
-		<input type="submit" value="登録">
+		<input type="submit" value="借りる">
 	</form>
 
 </body>

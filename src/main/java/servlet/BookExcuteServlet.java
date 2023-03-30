@@ -39,7 +39,7 @@ public class BookExcuteServlet extends HttpServlet {
 			String path = "";
 			if(result == 1) {
 				// 登録に成功したので、sessionのデータを削除
-				session.removeAttribute("input_data");
+				//session.removeAttribute("input_data");
 				
 				path = "WEB-INF/view/book_success.jsp";
 				
@@ -47,10 +47,10 @@ public class BookExcuteServlet extends HttpServlet {
 				// 失敗した場合はパラメータ付きで登録画面に戻す
 				path = "WEB-INF/view/book_regester.jsp";
 				
-				RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-				dispatcher.forward(request, response);
+				
 			}
-			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 			}
 		
 		
