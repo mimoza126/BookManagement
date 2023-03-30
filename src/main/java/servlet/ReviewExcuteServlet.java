@@ -1,3 +1,4 @@
+
 package servlet;
 
 import java.io.IOException;
@@ -10,49 +11,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.BookDTO;
+import dao.BookDAO;
+import dto.ReviewDTO;
 
 /**
- * Servlet implementation class BookConfirmRegester
+ * Servlet implementation class ReviewExcuteServlet
  */
-@WebServlet("/BookConfirmRegester")
-public class BookConfirmRegester extends HttpServlet {
+@WebServlet("/ReviewExcuteServlet")
+public class ReviewExcuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookConfirmRegester() {
+    public ReviewExcuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title");
-		String author = request.getParameter("author");
-		String publisher = request.getParameter("publisher");
-		String isbn = request.getParameter("isbn");
-		String category = request.getParameter("category");
-		String type = request.getParameter("type");
-		
-		
-		
-		BookDTO bo = new BookDTO( 0 , title , author , publisher , isbn ,category , type);
-		
-		
-		
 		HttpSession session = request.getSession();
-		session.setAttribute("input_data", bo);
+		ReviewDTO re = (ReviewDTO)session.getAttribute("input_data");
+		//int stock = (int)session.getAttribute("stock_data");
 		
-		String view = "WEB-INF/view/book_confirm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);	
-		dispatcher.forward(request, response);	
+			int result = BookDAO.RegisterReview(re);
+			System.out.println(result);
+			String path = "";
+			request.setAttribute("input", re);
+			if(result == 1) {
+				// 登録に成功したので、sessionのデータを削除
+				session.removeAttribute("input_data");
+			//session.removeAttribute("stock_data");
+				
+				path = "WEB-INF/view/review_success.jsp";
+				
+			} else {
+				// 失敗した場合はパラメータ付きで登録画面に戻す
+				path = "WEB-INF/view/review_write.jsp";
+			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			dispatcher.forward(request, response);
 	}
 
 	/**

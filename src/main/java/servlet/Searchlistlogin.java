@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BookDTO;
+import dto.BooklistDTO;
 
 /**
- * Servlet implementation class BookListServlet
+ * Servlet implementation class Searchlistlogin
  */
-@WebServlet("/BookListServlet")
-public class BookListServlet extends HttpServlet {
+@WebServlet("/Searchlistlogin")
+public class Searchlistlogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookListServlet() {
+    public Searchlistlogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +31,17 @@ public class BookListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8"); // requestのエンコーディングをUTF-8に設定する
+        String title = request.getParameter("name");
+        List<BooklistDTO> List = BookDAO.SearchBook(title);
 
-		List<BookDTO> List = BookDAO.SelectAllBookD();
+        request.setAttribute("list", List);
 
-		
-
-
-		request.setAttribute("list", List);
-		
-		String view = "WEB-INF/view/book_list.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
-	}
+        String view = "WEB-INF/view/book_list_login.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+        dispatcher.forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

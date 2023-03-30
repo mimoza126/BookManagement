@@ -2,14 +2,19 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel = "stylesheet" href = "css/register.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
 <title>regester</title>
 </head>
 <body>
-<div>図書登録</div>
+<h2 class="center-block">図書登録</h2>
+<div class="box_con02">
 <form action="BookConfirmRegester"method="POST">
-<table>
+
+<table class="formTable">
+
     <tr>
 		<th>図書名</th>
 		<td><input size="20"type = "text" name = "title" placeholder = "図書名"class="wide"></td>
@@ -42,5 +47,6 @@
 		
 		<input type="submit" value="登録">
 </form>
+</div>
 </body>
 </html>
