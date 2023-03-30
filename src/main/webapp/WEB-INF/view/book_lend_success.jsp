@@ -18,6 +18,6 @@ for(BookDTO s : list) {
 	    ID:<%=s.getId() %><br>
 		図書名：<%=s.getTitle() %><br>
 		<%} %>
-		<a href="./">戻る</a>
+		<a href="BookListlogin">戻る</a>
 </body>
 </html>

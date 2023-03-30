@@ -1,3 +1,13 @@
+@charset "UTF-8";
+
+html {
+  text-align: center;
+}
+
+.login {
+	text-align: right;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -23,142 +33,15 @@ li.category-item a:hover {
   background-color: #ddd; /* マウスオーバー時の背景色を設定 */
 }
 
+table {
 
-
-
-.formTable {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+width: 100%;
+border-collapse: collapse;
 }
-
-.formTable th,
-.formTable td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-.formTable th {
-  width: 25%;
-}
-
-.formTable td input[type="text"],
-.formTable td textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  line-height: 1.5;
-  box-sizing: border-box;
-}
-
-.formTable td input[type="text"] {
-  height: 50px;
-}
-
-.formTable td textarea {
-  height: 150px;
-}
-
-.formTable td input[type="submit"] {
-   display: block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.formTable td input[type="submit"]:hover {
-  background-color: #0062cc;
-}
-.formTable td input[type="submit"] {
- 
-  margin: 0 auto;
-  /* 送信ボタンを中央に配置する */
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.formTable td input[type="submit"]:hover {
-  background-color: #0062cc;
-}
-
-
-
-.bookDetails {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.bookDetails h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0 0 10px;
-  color: #333;
-}
-
-.bookDetails p {
-  font-size: 16px;
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails .review {
-  margin-top: 30px;
-}
-
-.bookDetails .review h3 {
-  font-size: 20px;
-  margin: 0 0 10px;
-  color: #333;
-}
-
-.bookDetails .review p {
-  font-size: 16px;
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails .review .title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0 0 5px;
-  color: #333;
-}
-
-.bookDetails .review .comment {
-  margin: 0;
-  color: #555;
-}
-
-.bookDetails a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.bookDetails a:hover {
-  background-color: #0062cc;
+td {
+padding: 10px;
+text-align: center;
+border: 1px solid #ddd;
+transition: background-color 0.3s ease-in-out;
+box-sizing: border-box;
 }

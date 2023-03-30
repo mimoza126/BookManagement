@@ -33,7 +33,7 @@ public class ReviewWrite extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int id = Integer.parseInt(request.getParameter("id"));
-		
+		System.out.println(id);
 		
 			
 			//List<ReviewDTO> review = BookDAO.SelectAllReview(book_id);
