@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>編集・削除</title>
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8");

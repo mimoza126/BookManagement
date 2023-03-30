@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookSuccess</title>
+<title>図書登録成功</title>
 </head>
 <body>
 <h3>下記の内容でを図書を登録しました</h3>

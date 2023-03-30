@@ -33,13 +33,7 @@ public class BookListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getParameter("UTF-8");
-		
-
 		List<BookDTO> List = BookDAO.SelectAllBookD();
-
-		
-
-
 		request.setAttribute("list", List);
 		
 		String view = "WEB-INF/view/book_list.jsp";

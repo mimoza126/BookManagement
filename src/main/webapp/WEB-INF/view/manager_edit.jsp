@@ -10,11 +10,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>編集画面</title>
 </head>
 <body>
 
-	<table border="1">]
+	<table border="1">
 	<tr>
 		<th>ID</th>
 				<th>新/旧</th>

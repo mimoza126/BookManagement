@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>返却画面</title>
 </head>
 <body>
 	<h1>返却しますか？</h1>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>review_confirm</title>
+<title>口コミ確認</title>
 </head>
 <body>
 <%
