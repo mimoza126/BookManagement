@@ -16,20 +16,20 @@
 	<button type="submit" name="buttonName" value="buttonValue">ログアウト</button>
 	</form>
 	
-<form action="Searchlist" method="post">
+<form action="Searchlistlogin" method="post">
 	<input type="text" name="title" placeholder="図書検索">
 	<input type="submit" value="検索">
 	</form>
 	
 	<ul class="category-list">
-	  <li class="category-item"><a href="BookListServlet">すべて</a> </li>
-	  <li class="category-item"><a href="BookSearchlist?category=文芸">文芸</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=実用書">実用書</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=ビジネス書・経済・経営">ビジネス書・経済・経営</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=絵本・児童書">絵本・児童書</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=学習参考書">学習参考書</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=専門書">専門書</a></li>
-	  <li class="category-item"><a href="BookSearchlist?category=コミック・雑誌">コミック・雑誌</a></li>
+	  <li class="category-item"><a href="BookListlogin">すべて</a> </li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=文芸">文芸</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=実用書">実用書</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=ビジネス書・経済・経営">ビジネス書・経済・経営</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=絵本・児童書">絵本・児童書</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=学習参考書">学習参考書</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=専門書">専門書</a></li>
+	  <li class="category-item"><a href="BookSearchlistlogin?category=コミック・雑誌">コミック・雑誌</a></li>
 	</ul>
 	<br>
 	<table>

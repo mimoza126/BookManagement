@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/review_confirm.css">
 <title>口コミ確認</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
 
 		タイトル：<%=re.getTitle() %><br>
 		コメント:<%=re.getComment() %><br>
-		
+		<a href = "ReviewWrite?id=<%=re.getBook_id()%>">戻る</a>
 		<a href="ReviewExcuteServlet">OK</a><br>	
 
 </body>

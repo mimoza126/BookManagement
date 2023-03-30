@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import dto.BooklistDTO;
+import dto.BookDTO;
 
 /**
  * Servlet implementation class Searchlistlogin
@@ -33,8 +33,8 @@ public class Searchlistlogin extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8"); // requestのエンコーディングをUTF-8に設定する
-        String title = request.getParameter("name");
-        List<BooklistDTO> List = BookDAO.SearchBook(title);
+        String title = request.getParameter("title");
+        List<BookDTO> List = BookDAO.SearchBookName(title);
 
         request.setAttribute("list", List);
 
