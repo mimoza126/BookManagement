@@ -7,19 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>success</title>
+<title>口コミ登録</title>
 </head>
 <body>
 <h3>下記の内容でを口コミを登録しました</h3>
-
 	<%
 	ReviewDTO re=(ReviewDTO)request.getAttribute("input");
 	%>
 		タイトル：<%=re.getTitle() %><br>
 		コメント:<%=re.getComment() %><br>
 		
-	<a href="../">戻る</a>
+	<a href = "BookListlogin">本の一覧画面</a>
 
 </body>
 </html>

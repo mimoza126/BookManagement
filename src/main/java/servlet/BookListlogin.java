@@ -32,11 +32,10 @@ public class BookListlogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BookDTO> List = BookDAO.SelectAllBookD();
-
-		request.setAttribute("list", List);
+	List<BookDTO> List = BookDAO.SelectAllBookD();
+	request.setAttribute("list", List);
 		
-		String view = "WEB-INF/view/book_list_login.jsp";
+	String view = "WEB-INF/view/book_list_login.jsp";
 	RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 	dispatcher.forward(request, response);
 	}

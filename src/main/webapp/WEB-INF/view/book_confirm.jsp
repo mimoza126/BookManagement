@@ -8,18 +8,18 @@
 
 <head>
 <meta charset="UTF-8">
-<title>confirm</title>
+<title>本の登録画面</title>
 </head>
 <body>
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
 	BookDTO bo = (BookDTO)session.getAttribute("input_data");
 	%>
-	<div class="box_con02">
+<div class="box_con02">
 
 <table class="formTable">
     <tr>
-		<th>図書名</th>
+		<th>図書名</th>	
 		<td class="wide"><%=bo.getTitle() %></td>
 	</tr>
 	<tr>
