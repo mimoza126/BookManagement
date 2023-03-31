@@ -1,6 +1,7 @@
+<%@page import="servlet.manager_DeletecomfirmServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ page import="dto.UsersDTO" %>
+ <%@ page import="dto.UsersDTO" %>
 <%@ page import="dto.LendingDTO" %>
 <%@ page import="dto.BookDTO" %>
 <%@ page import="dao.ManagerDAO" %>
@@ -8,12 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>削除</title>
+<title>Insert title here</title>
 </head>
 <body>
+
 <header class="header">
       <!-- ヘッダーロゴ -->
       <div class="logo">管理者</div>
@@ -39,13 +40,22 @@
    
       </div>
     </header>
+<% request.setCharacterEncoding("UTF-8");
+   String title =request.getParameter("title");
+	int i=0	   ;     		%>
 
-
-<h1>削除しました。</h1>
-
-
-<a href="managerMenuServlet">図書一覧</a>
-
-
+<%List<BookDTO> list =ManagerDAO.searchBookBytitle(title);
+	for(BookDTO s : list) {
+	if(i == 0){ %>
+	<h2><%=s.getTitle() %></h2>
+	<p>(著)  <%=s.getAuthor() %></p><p>出版社  <%=s.getPublisher() %></p>
+	
+	
+	<a href="managerEditingServlet?title=<%=s.getTitle() %>">編集</a>
+	
+	<a href="BookReviewServlet?isbn=<%=s.getIsbn()%>">口コミを書く</a>
+	<% i++; %>
+	<% } %>
+	<% } %>
 </body>
 </html>

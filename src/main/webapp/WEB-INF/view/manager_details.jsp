@@ -9,10 +9,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
-<title>貸出履歴</title>
+<title貸出履歴</title>
 </head>
 <body>
+<header class="header">
+      <!-- ヘッダーロゴ -->
+      <div class="logo">管理者</div>
+    
+      <!-- ハンバーガーメニュー部分 -->
+      <div class="nav">
+    
+        <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+        <input id="drawer_input" class="drawer_hidden" type="checkbox">
+    
+        <!-- ハンバーガーアイコン -->
+        <label for="drawer_input" class="drawer_open"><span></span></label>
+    
+        <!-- メニュー -->
+        <nav class="nav_content">
+          <ul class="nav_list">
+            <li class="nav_item"><a href="managerMenuServlet">図書一覧</a></li>
+            <li class="nav_item"><a href="manager_logServlet">ログ</a></li>
+            <li class="nav_item"><a href="BookRegester">登録</a></li>
+            <li class="nav_item"><a href="">ログアウト</a></li>
+          </ul>
+        </nav>
+   
+      </div>
+    </header>
+
 	<% request.setCharacterEncoding("UTF-8");
 	int i;%>
 	<table border="1">
@@ -57,18 +85,34 @@ for(BookDTO a : list1){ %>
 <% } %>
 <% } %>
 		
-		
-		<% List <LendingDTO>list4= ManagerDAO.selectAlllendingDTO(); %>
-<% for(LendingDTO q : list4){ %>
-<% if( i == q.getBook_id()) {%>
-	<tr>
-		<td>貸し出し日</td><td><%=q.getLendin_date() %></td>
-</tr>
-
+		<% List <LendingDTO>list4= ManagerDAO.selectAlllendingDTO();%>
+<% for(LendingDTO o : list4){ %>
+		<% if(i == o.getBook_id()){ %>
 <tr>
-		<td>返却日</td><td><%=q.getReturn_data() %></td>
+		<td>貸し出し日</td><td><%=o.getLendin_date() %></td>
 </tr>			
+<% } %>	
+<% } %>	
+		
+		
+		<% List <BookDTO>list5= ManagerDAO.selectAllBookDTO(); 
+		String type ="新";%>
+<% for(BookDTO q : list5){ %>
+<% if( i == q.getId() && type.equals(q.getId())) {%>
+	<tr>
+		<td>貸出日数</td><td>7</td>
+		<% }else if(i == q.getId()){%>
+			<td>貸出日数</td><td>7</td> 
+</tr>
+<% } %>
 		<% } %>
+	<% List <LendingDTO>list6= ManagerDAO.selectAlllendingDTO();%>
+<% for(LendingDTO o : list6){ %>
+<% if(i == o.getBook_id()){ %>
+<tr>
+		<td>返却日</td><td><%=o.getReturn_data() %></td>
+</tr>			
+<% } %>	
 <% } %>	
 
 </table>

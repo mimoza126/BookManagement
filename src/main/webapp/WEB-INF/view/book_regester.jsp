@@ -5,16 +5,44 @@
 <link rel = "stylesheet" href = "css/register.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <head>
+<link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
 <title>図書登録</title>
 </head>
 <body>
-<h2 class="center-block">図書登録</h2>
-<div class="box_con02">
+
+<header class="header">
+      <!-- ヘッダーロゴ -->
+      <div class="logo">管理者</div>
+    
+      <!-- ハンバーガーメニュー部分 -->
+      <div class="nav">
+    
+        <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+        <input id="drawer_input" class="drawer_hidden" type="checkbox">
+    
+        <!-- ハンバーガーアイコン -->
+        <label for="drawer_input" class="drawer_open"><span></span></label>
+    
+        <!-- メニュー -->
+        <nav class="nav_content">
+          <ul class="nav_list">
+            <li class="nav_item"><a href="managerMenuServlet">図書一覧</a></li>
+            <li class="nav_item"><a href="manager_logServlet">ログ</a></li>
+            <li class="nav_item"><a href="BookRegester">登録</a></li>
+            <li class="nav_item"><a href="">ログアウト</a></li>
+          </ul>
+        </nav>
+   
+      </div>
+    </header>
+
+
+<div>図書登録</div>
 <form action="BookConfirmRegester"method="POST">
 
-<table class="formTable">
 
+<table>
     <tr>
 		<th>図書名</th>
 		<td><input size="20"type = "text" name = "title" placeholder = "図書名"class="wide"></td>
